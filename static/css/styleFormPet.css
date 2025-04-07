@@ -1,0 +1,125 @@
+/* Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #1e4f61;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+/* Estilos del formulario */
+form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+fieldset {
+    border: 1px solid #adb1a7;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    background-color: #faf0dc;
+}
+
+legend {
+    color: #1e4f61;
+    font-weight: 600;
+    padding: 0 10px;
+    font-size: 1.2rem;
+}
+
+/* Estilos de etiquetas y controles de formulario */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #1e4f61;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #adb1a7;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 15px;
+    background-color: white;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #1e4f61;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(30, 79, 97, 0.2);
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Estilos para radio buttons */
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+input[type="radio"] + label {
+    display: inline-block;
+    margin-right: 15px;
+    font-weight: normal;
+}
+
+/* Estilo del botón de submit */
+input[type="submit"] {
+    background-color: #1e4f61;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    transition: background-color 0.3s;
+    font-weight: 600;
+}
+
+input[type="submit"]:hover {
+    background-color: #153946;
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    form {
+        padding: 15px;
+    }
+    
+    fieldset {
+        padding: 15px;
+    }
+}
+
+

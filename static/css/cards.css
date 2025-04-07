@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.home_content {
+  flex-grow: 1;
+  padding: 20px;
+  transition: margin-left 0.5s;
+  margin-left: 150px; /* Igual al ancho del sidebar */
+}
+
+
+/* ESTILOS PARA LAS CARDS DE MASCOTAS */
+.contenedor-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Cambiado de 300px a 350px */
+  gap: 25px; /* Aumentado el espacio entre cards */
+  padding: 25px;
+}
+
+.card-mascota {
+  width: 100%; /* Ocupa todo el espacio disponible en su celda grid */
+  max-width: 380px; /* Máximo ancho para no estirarse demasiado */
+  background: linear-gradient(135deg, #faf0dc 0%, #ffffff 100%);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(30, 79, 97, 0.15);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid #adb1a7;
+  margin: 0 auto; /* Centra la card en su celda grid */
+}
+
+.card-mascota:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(30, 79, 97, 0.2);
+}
+
+.card-header {
+  background-color: #1e4f61;
+  color: white;
+  padding: 15px;
+  position: relative;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.especie-icon {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 1.8rem;
+}
+
+.card-body {
+  padding: 20px; /* Aumentado de 15px */
+}
+
+.dato-mascota {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.dato-mascota strong {
+  color: #1e4f61;
+  min-width: 140px; /* Aumentado de 120px */
+  display: inline-block;
+  font-weight: 600;
+}
+
+.dato-mascota span {
+  flex: 1;
+  color: #333;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end; /* Alinea botones a la derecha */
+  gap: 15px; /* Espacio entre botones */
+  padding: 15px 20px; /* Más padding horizontal */
+  background-color: rgba(173, 177, 167, 0.1);
+  border-top: 1px solid #adb1a7;
+}
+
+.btn-mascota {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-editar {
+  background-color: #1e4f61;
+  color: white;
+}
+
+.btn-editar:hover {
+  background-color: #153946;
+}
+
+.btn-eliminar {
+  background-color: #faf0dc;
+  color: #1e4f61;
+  border: 1px solid #1e4f61;
+}
+
+.btn-eliminar:hover {
+  background-color: #e8d9c1;
+}
+
+.detalles-adicionales {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+.detalles-adicionales.active {
+  max-height: 500px;
+}
+
+.btn-ver-mas {
+  background: none;
+  border: none;
+  color: #1e4f61;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+/* Iconos para especies */
+.fa-dog {
+  color: #8b5a2b;
+}
+
+.fa-cat {
+  color: #d2691e;
+}
+
+/* Estilos para el botón "Nueva Mascota" */
+.btn-nueva-mascota {
+  background-color: #1e4f61;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(30, 79, 97, 0.2);
+  border: 2px solid #1e4f61;
+}
+
+.btn-nueva-mascota:hover {
+  background-color: #153946;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(30, 79, 97, 0.3);
+}
+
+.btn-nueva-mascota:active {
+  transform: translateY(0);
+}
+
+.btn-nueva-mascota i {
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contenedor-cards {
+      grid-template-columns: 1fr;
+  }
+}
+
+h1 {
+  text-align: center;
+}

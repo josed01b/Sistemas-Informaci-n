@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.css">
+    <link rel="stylesheet" href="/static/css/styleSidebar.css">
+    <title></title>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="header__container">
+            <a href="/vistas/homepage.html" class="header__logo">
+                <i class="ri-baidu-line"></i>
+                <span>Smarte Vet</span>
+            </a>
+
+            <button class="header__toggle" id="header-toggle">
+                <i class="ri-menu-line"></i>
+            </button>
+
+
+        </div>
+    </header>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar__container">
+            <div class="sidebar__user">
+                <div class="sidebar__img">
+                    <img src="/img/user.png" alt="Usuario">
+                </div>
+                <div class="sidebar__info">
+                    <h3 id="nombre"></h3>
+                    <span id="correo"></span>
+                </div>
+            </div>
+            <div class="sidebar__content">
+                <div>
+                    <h3 class="sidebar__title">Administar</h3>
+                    <div class="sidebar__list">
+                        <a href="/vistas/dashboard.html" class="sidebar__link active-link">
+                            <i class="ri-dashboard-line"></i>
+                            <span>Dashboard</span>
+                        </a>
+
+                        <a href="/vistas/mascotas/listarmascotas.html" class="sidebar__link">
+                            <i class="ri-bear-smile-line"></i>
+                            <span>Mis mascotas</span>
+                        </a>
+
+                        <a href="#" class="sidebar__link">
+                            <i class="ri-stethoscope-line"></i>
+                            <span>Alergias</span>
+                        </a>
+
+                        <a href="#" class="sidebar__link">
+                            <i class="ri-lightbulb-flash-line"></i>
+                            <span>Recomendaciones</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="sidebar__title">Ajustes</h3>
+                    <div class="sidebar__list">
+                        <a href="/vistas/seguridad/cambiar_contrasena.html" class="sidebar__link">
+                            <i class="ri-settings-line"></i>
+                            <span>Ajustes</span>
+                        </a>
+
+                        <a href="#" class="sidebar__link">
+                            <i class="ri-notification-line"></i>
+                            <span>Notificaciones</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar__actions">
+                <button>
+                    <i class="ri-moon-clear-line sidebar__link sidebar__theme" id="theme">
+                        <span>Tema</span>
+                    </i>
+                </button>
+                <button class="sidebar__link" id="logout">
+                    <i class="ri-logout-circle-line" ></i>
+                    <span>Cerrar Sesion</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main container" id="main">
+        
+    </main>
+
+    <script src="/static/js/sidebar.js"></script>
+</body>
+</html>

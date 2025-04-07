@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Mascota</title>
+    <!-- Incluir la fuente Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styleFormPet.css">
+</head>
+<body>
+    <h1>Formulario de Registro de Mascota</h1>
+    <form method="post">
+        
+        <!-- Información básica -->
+        <fieldset>
+            <legend>Información Básica</legend>
+            <label for="nombre">Nombre de la mascota:</label><br>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+            
+            <label for="especie">Especie:</label><br>
+            <select id="especie" name="especie" required>
+                <option value="">Seleccione...</option>
+                <option value="perro">Perro</option>
+                <option value="gato">Gato</option>
+            </select><br><br>
+            
+            <label for="raza">Raza:</label><br>
+            <input type="text" id="raza" name="raza" required><br><br>
+            
+            <label for="color">Color:</label><br>
+            <input type="text" id="color" name="color" required><br><br>
+            
+            <label for="peso">Peso (Kg):</label><br>
+            <input type="number" id="peso" name="peso" step="0.1" min="0" required><br><br>
+            
+            <label for="edad">Edad de la mascota:</label><br>
+            <input type="text" id="edad" name="edad" placeholder="Ej: 3 años, 6 meses" required><br><br>
+        </fieldset>
+        
+        <!-- Cuidados y salud -->
+        <fieldset>
+            <legend>Cuidados y Salud</legend>
+            <label for="alimentacion">Tipo de alimentación:</label><br>
+            <input type="text" id="alimentacion" name="alimentacion" placeholder="Ej: Croquetas premium, dieta casera"><br><br>
+            
+            <label for="comportamiento">Comportamiento:</label><br>
+            <select id="comportamiento" name="comportamiento">
+                <option value="">Seleccione...</option>
+                <option value="agresivo">Agresivo</option>
+                <option value="jugueton">Juguetón</option>
+                <option value="tranquilo">Tranquilo</option>
+                <option value="timido">Tímido</option>
+                <option value="sociable">Sociable</option>
+            </select><br><br>
+            
+            <label for="medicamentos">Medicamentos (si aplica):</label><br>
+            <textarea id="medicamentos" name="medicamentos" rows="3" placeholder="Indique medicamentos y dosis"></textarea><br><br>
+            
+            <label for="vacunas">Vacunas recibidas:</label><br>
+            <textarea id="vacunas" name="vacunas" rows="3" required placeholder="Indique nombre de vacunas y fechas de aplicación"></textarea><br><br>
+            
+            <label for="alergias">Alergias (si aplica):</label><br>
+            <textarea id="alergias" name="alergias" rows="2" placeholder="Indique alergias conocidas"></textarea><br><br>
+            
+            <label for="historial">Historial Médico:</label><br>
+            <textarea id="historial" name="historial" rows="4" placeholder="Enfermedades previas, cirugías, tratamientos especiales"></textarea><br><br>
+        </fieldset>
+        
+        <!-- Datos adicionales -->
+        <fieldset>
+            <legend>Datos Adicionales</legend>
+            <label for="ultima_consulta">Fecha de Última Consulta Veterinaria:</label><br>
+            <input type="date" id="ultima_consulta" name="ultima_consulta"><br><br>
+            
+            <label>Seguro Médico para Mascotas:</label><br>
+            <input type="radio" id="seguro_si" name="seguro" value="si">
+            <label for="seguro_si">Sí</label>
+            <input type="radio" id="seguro_no" name="seguro" value="no" checked>
+            <label for="seguro_no">No</label><br><br>
+            
+            <label for="veterinario">Nombre de su Veterinario de Confianza:</label><br>
+            <input type="text" id="veterinario" name="veterinario"><br><br>
+            
+            <label for="observaciones">Observaciones Especiales:</label><br>
+            <textarea id="observaciones" name="observaciones" rows="4" placeholder="Necesidades particulares, fobias, comportamientos especiales"></textarea><br><br>
+        </fieldset>
+        
+        <input type="submit" id="submit" value="Registrar Mascota">
+    </form>
+    <script type="module" src="/static/js/firebase-config.js" defer></script>
+    <script type="module" src="/static/js/petdb.js" defer></script>
+</body>
+</html>

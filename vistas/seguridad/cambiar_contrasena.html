@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/styleCambiarContra.css">
+    <link rel="stylesheet" href="/static/css/styleSidebar.css">
+</head>
+<body>
+    <div id="sidebar-container"></div>
+
+    <div class="main">
+        <form method="post">   
+            <div class="input-group">
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" id="correo" name="correo" required placeholder="Ingrese su correo">
+            </div>
+
+            <input type="submit" id="cambiar" value="Cambiar contraseña">
+        </form>
+    </div>
+
+    <script type="module" src="/static/js/firebase-config.js" defer></script>
+    <script type="module" src="/static/js/sidebar.js" defer></script>
+    <script type="module" src="/static/js/cambiar_contrasena.js" defer></script>
+</body>
+</html>

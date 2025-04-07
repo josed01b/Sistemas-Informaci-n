@@ -1,0 +1,100 @@
+        /* Estilos base sin cambiar estructura HTML */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        form {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(30, 79, 97, 0.15);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #1e4f61;
+            font-size: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #adb1a7;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: all 0.3s;
+            box-sizing: border-box;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #1e4f61;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(30, 79, 97, 0.1);
+        }
+
+        #submit {
+            background-color: #1e4f61;
+            color: white;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        #submit:hover {
+            background-color: #153946;
+        }
+
+        /* Efecto sutil para las etiquetas */
+        label {
+            position: relative;
+            padding-left: 8px;
+        }
+
+        label:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            height: 16px;
+            width: 4px;
+            background-color: #1e4f61;
+            border-radius: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+            
+            form {
+                padding: 20px;
+            }
+        }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Inicio de Sesión</title>
+    <link rel="stylesheet" href="/static/css/styleLogin.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <img src="/img/Logo Smart Vet.png" alt="Logo Veterinaria">
+        </div>
+        
+        <h2>Iniciar Sesión</h2>
+        
+        <form method="post">   
+            <div class="input-group">
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" id="correo" name="correo" required placeholder="Ingrese su correo">
+            </div>
+
+            <div class="input-group">
+                <label for="contrasena">Contraseña:</label>
+                <div class="password-container">
+                    <input type="password" id="contrasena" name="contrasena" required placeholder="Ingrese su contraseña">
+                    <span class="toggle-password">🔒</span>
+                </div>
+            </div>
+
+            <input type="submit" id="login" value="Iniciar Sesión">
+
+            <a href="#" id="recuperar">¿Olvidó su contraseña?</a>
+        </form>
+
+        <p class="register-link">¿No tienes cuenta? <a href="/vistas/usuario/register.html">Regístrate aquí</a></p>
+
+    <script type="module" src="/static/js/login.js" defer></script>
+    <script>
+        // Función para mostrar/ocultar contraseña
+        document.querySelector('.toggle-password').addEventListener('click', function() {
+            const passwordInput = document.getElementById('contrasena');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            // Cambiar el ícono del ojo
+            this.textContent = type === 'password' ? '🔒' : '🔓';
+        });
+    </script>
+</body>
+</html>

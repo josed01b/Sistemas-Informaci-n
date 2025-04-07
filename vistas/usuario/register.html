@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <link rel="stylesheet" href="/static/css/styleRegistro.css">
+</head>
+<body>
+    <form method="post">
+        <label for="nombre">Nombre del dueño:</label><br>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+
+        <label for="identificacion">Identificación del dueño:</label><br>
+        <input type="text" id="identificacion" name="identificacion" required><br><br>
+
+        <label for="direccion">Dirección:</label><br>
+        <input type="text" id="direccion" name="direccion" required><br><br>
+
+        <label for="edad">Edad del dueño:</label><br>
+        <input type="number" id="edad" name="edad" required><br><br>
+
+        <label for="correo">Correo:</label><br>
+        <input type="email" id="correo" name="correo" required><br><br>
+
+        <label for="telefono">Teléfono:</label><br>
+        <input type="tel" id="telefono" name="telefono" required><br><br>
+
+        <label for="preferencia">Preferencia de Comunicación:</label><br>
+        <select id="preferencia" name="preferencia" required>
+            <option value="email">Email</option>
+            <option value="telefono">Teléfono</option>
+        </select><br><br>
+
+        <label for="contrasena">Contraseña (Crear Contraseña):</label><br>
+        <input type="password" id="contrasena" name="contrasena" required><br><br>
+
+        <input type="submit" id="submit">
+    </form>
+
+    <script type="module" src="/static/js/userdb.js" defer></script>
+</body>
+</html>
+

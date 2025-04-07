@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+body {
+    background-image: url('https://wallpaperaccess.com/full/1426882.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background-color: rgba(250, 240, 220, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+}
+
+.logo {
+    width: 120px;
+    height: 120px;
+    margin: -90px auto 20px;
+    border-radius: 50%;
+    background-color: #faf0dc;
+    border: 5px solid #1e4f61;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    width: 80%;
+    height: auto;
+    border-radius: 18px;
+}
+
+h2 {
+    color: #1e4f61;
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+    color: #1e4f61;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #adb1a7;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s;
+    background-color: #faf0dc;
+}
+
+input:focus {
+    border-color: #1e4f61;
+}
+
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #1e4f61;
+}
+
+#login {
+    background-color: #1e4f61;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+#login:hover {
+    background-color: #153946;
+}
+
+#recuperar {
+    display: block;
+    margin-top: 15px;
+    color: #1e4f61;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+#recuperar:hover {
+    text-decoration: underline;
+}
+
+.register-link {
+    margin-top: 20px;
+    color: #1e4f61;
+}
+
+.register-link a {
+    color: #1e4f61;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+

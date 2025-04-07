@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/styleSidebar.css">
+    <link rel="stylesheet" href="/static/css/styleHomepage.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+    <div id="sidebar-container"></div>
+    <div class="home_content">
+        <div class="mv_container">
+            <div class="mv_item">
+                <i class='bx bx-bullseye'></i>
+                <h2>Misión</h2>
+                <p>Brindar información y recursos educativos sobre el cuidado adecuado de los animales, promoviendo su bienestar físico y emocional, a través de contenido de calidad, orientación profesional y productos recomendados</p>
+            </div>
+            <div class="mv_item">
+                <i class='bx bx-show'></i>
+                <h2>Visión</h2>
+                <p>Ser la plataforma de referencia para dueños de animales, proporcionando conocimientos actualizados, herramientas útiles y consejos prácticos para mejorar la vida de sus mascotas en Medellín. </p>
+            </div>
+        </div>
+
+        <div class="aviso-importante" id="avisoImportante">
+            <div class="aviso-contenido">
+              <span class="aviso-cerrar" onclick="cerrarAviso()">&times;</span>
+              <h3>AVISO IMPORTANTE!</h3>
+              <p>Se recomienda cambiar la contraseña por mayor seguridad, puedes hacerlo desde este <a href="/vistas/seguridad/cambiar_contrasena.html">enlace</a> 
+                o desde las opcines laterales en "Ajustes".</p>
+            </div>
+          </div>
+    </div>
+
+    
+    <script type="module" src="/static/js/sidebar.js" defer></script>
+    <script>
+        // Mostrar el aviso cuando la página cargue
+        window.onload = function() {
+            document.getElementById('avisoImportante').style.display = 'block';
+        };
+        
+        // Función para cerrar el aviso
+        function cerrarAviso() {
+            document.getElementById('avisoImportante').style.display = 'none';
+            
+            // Guardar en localStorage para no mostrar de nuevo
+            localStorage.setItem('avisoVisto', 'true');
+        }
+        
+        // No mostrar si ya se vio antes
+        if(localStorage.getItem('avisoVisto') === 'true') {
+            document.getElementById('avisoImportante').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
