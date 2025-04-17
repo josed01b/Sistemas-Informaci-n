@@ -61,7 +61,7 @@ fetch("/vistas/plantilla/sidebar.html")
         ? "ri-moon-clear-line"
         : "ri-sun-line";
 
-    // Validamos si el fue seleccionado previament
+    // Validamos si el fue seleccionado previamente
     if (selectedTheme) {
       // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark
       document.body.classList[selectedTheme === "dark" ? "add" : "remove"](
@@ -85,11 +85,24 @@ fetch("/vistas/plantilla/sidebar.html")
     // Manejo de autenticación
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const userDoc = await getDoc(doc(db, "users", user.uid));
-        if (userDoc.exists()) {
-          const userData = userDoc.data();
-          document.getElementById("nombre").textContent = userData.userName;
-          document.getElementById("correo").textContent = userData.email;
+        // Primero verifica en la colección de admins
+        const adminDoc = await getDoc(doc(db, "admins", user.uid));
+        
+        if (adminDoc.exists()) {
+          // Es administrador
+          const adminData = adminDoc.data();
+          document.getElementById("nombre").textContent = adminData.userName;
+          document.getElementById("correo").textContent = adminData.email;
+          document.getElementById("sidebar").classList.add("show-admin");
+        } else {
+          // Si no es admin, verifica en users
+          const userDoc = await getDoc(doc(db, "users", user.uid));
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            document.getElementById("nombre").textContent = userData.userName;
+            document.getElementById("correo").textContent = userData.email;
+            document.getElementById("sidebar").classList.add("show-user");
+          }
         }
       } else {
         window.location.href = "/vistas/login.html";

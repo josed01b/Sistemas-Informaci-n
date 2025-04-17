@@ -1,0 +1,150 @@
+/* Estilos generales para todos los formularios */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #1e4f61;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+form {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+fieldset {
+    border: 1px solid #e1e5eb;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+legend {
+    color: #1e4f61;
+    font-weight: 500;
+    padding: 0 10px;
+    font-size: 1.2em;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+input[type="password"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #1e4f61;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(30, 79, 97, 0.1);
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Estilos para radio buttons y checkboxes */
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.1);
+}
+
+.radio-group,
+.checkbox-group {
+    margin-bottom: 20px;
+}
+
+.radio-group label,
+.checkbox-group label {
+    display: inline-block;
+    margin-right: 20px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+/* Estilo para el grupo de checkboxes de vacunas */
+.vaccine-checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.vaccine-checkbox-item {
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #e1e5eb;
+}
+
+/* Botón de submit */
+input[type="submit"] {
+    background-color: #1e4f61;
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    margin: 30px auto 0;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #153946;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    form {
+        padding: 20px;
+    }
+    
+    .vaccine-checkbox-group {
+        grid-template-columns: 1fr;
+    }
+}

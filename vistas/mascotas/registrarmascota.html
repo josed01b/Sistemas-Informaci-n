@@ -4,47 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro Mascota</title>
-    <!-- Incluir la fuente Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/styleFormPet.css">
+    <link rel="stylesheet" href="/static/css/styleForms.css">
 </head>
 <body>
-    <h1>Formulario de Registro de Mascota</h1>
+    <h1>Registra tu Mascota</h1>
     <form method="post">
         
         <!-- Información básica -->
         <fieldset>
             <legend>Información Básica</legend>
-            <label for="nombre">Nombre de la mascota:</label><br>
-            <input type="text" id="nombre" name="nombre" required><br><br>
+            <label for="nombre">Nombre de la mascota:</label>
+            <input type="text" id="nombre" name="nombre" required>
             
-            <label for="especie">Especie:</label><br>
+            <label for="especie">Especie:</label>
             <select id="especie" name="especie" required>
                 <option value="">Seleccione...</option>
                 <option value="perro">Perro</option>
                 <option value="gato">Gato</option>
-            </select><br><br>
+            </select>
             
-            <label for="raza">Raza:</label><br>
-            <input type="text" id="raza" name="raza" required><br><br>
+            <label for="raza">Raza:</label>
+            <input type="text" id="raza" name="raza" required>
             
-            <label for="color">Color:</label><br>
-            <input type="text" id="color" name="color" required><br><br>
+            <label for="color">Color:</label>
+            <input type="text" id="color" name="color" required>
             
-            <label for="peso">Peso (Kg):</label><br>
-            <input type="number" id="peso" name="peso" step="0.1" min="0" required><br><br>
+            <label for="peso">Peso (Kg):</label>
+            <input type="number" id="peso" name="peso" step="0.1" min="0" required>
             
-            <label for="edad">Edad de la mascota:</label><br>
-            <input type="text" id="edad" name="edad" placeholder="Ej: 3 años, 6 meses" required><br><br>
+            <label for="edad">Edad de la mascota:</label>
+            <input type="text" id="edad" name="edad" placeholder="Ej: 3 años, 6 meses" required>
         </fieldset>
         
         <!-- Cuidados y salud -->
         <fieldset>
             <legend>Cuidados y Salud</legend>
-            <label for="alimentacion">Tipo de alimentación:</label><br>
-            <input type="text" id="alimentacion" name="alimentacion" placeholder="Ej: Croquetas premium, dieta casera"><br><br>
+            <label for="alimentacion">Tipo de alimentación:</label>
+            <input type="text" id="alimentacion" name="alimentacion" placeholder="Ej: Croquetas premium, dieta casera">
             
-            <label for="comportamiento">Comportamiento:</label><br>
+            <label for="comportamiento">Comportamiento:</label>
             <select id="comportamiento" name="comportamiento">
                 <option value="">Seleccione...</option>
                 <option value="agresivo">Agresivo</option>
@@ -52,38 +51,63 @@
                 <option value="tranquilo">Tranquilo</option>
                 <option value="timido">Tímido</option>
                 <option value="sociable">Sociable</option>
-            </select><br><br>
+            </select>
             
-            <label for="medicamentos">Medicamentos (si aplica):</label><br>
-            <textarea id="medicamentos" name="medicamentos" rows="3" placeholder="Indique medicamentos y dosis"></textarea><br><br>
+            <label for="medicamentos">Medicamentos (si aplica):</label>
+            <textarea id="medicamentos" name="medicamentos" rows="3" placeholder="Indique medicamentos y dosis"></textarea>
             
-            <label for="vacunas">Vacunas recibidas:</label><br>
-            <textarea id="vacunas" name="vacunas" rows="3" required placeholder="Indique nombre de vacunas y fechas de aplicación"></textarea><br><br>
+            <!-- Sección modificada de vacunas -->
+            <label>Vacunas recibidas:</label>
+            <div class="vaccine-checkbox-group">
+                <div class="vaccine-checkbox-item">
+                    <input type="checkbox" id="vacuna_rabia" name="vacunas" value="rabia">
+                    <label for="vacuna_rabia">Rabia</label>
+                </div>
+                <div class="vaccine-checkbox-item">
+                    <input type="checkbox" id="vacuna_leptospira" name="vacunas" value="leptospira">
+                    <label for="vacuna_leptospira">Leptospira</label>
+                </div>
+                <div class="vaccine-checkbox-item">
+                    <input type="checkbox" id="vacuna_bordetella" name="vacunas" value="bordetella">
+                    <label for="vacuna_bordetella">Bordetella</label>
+                </div>
+                <div class="vaccine-checkbox-item">
+                    <input type="checkbox" id="vacuna_coronavirus" name="vacunas" value="coronavirus">
+                    <label for="vacuna_coronavirus">Coronavirus</label>
+                </div>
+            </div>
             
-            <label for="alergias">Alergias (si aplica):</label><br>
-            <textarea id="alergias" name="alergias" rows="2" placeholder="Indique alergias conocidas"></textarea><br><br>
+            <label for="fecha_ultima_vacuna">Fecha de última vacuna:</label>
+            <input type="date" id="fecha_ultima_vacuna" name="fecha_ultima_vacuna">
             
-            <label for="historial">Historial Médico:</label><br>
-            <textarea id="historial" name="historial" rows="4" placeholder="Enfermedades previas, cirugías, tratamientos especiales"></textarea><br><br>
+            <label for="alergias">Alergias (si aplica):</label>
+            <textarea id="alergias" name="alergias" rows="2" placeholder="Indique alergias conocidas"></textarea>
+            
+            <label for="historial">Historial Médico:</label>
+            <textarea id="historial" name="historial" rows="4" placeholder="Enfermedades previas, cirugías, tratamientos especiales"></textarea>
         </fieldset>
         
         <!-- Datos adicionales -->
         <fieldset>
             <legend>Datos Adicionales</legend>
-            <label for="ultima_consulta">Fecha de Última Consulta Veterinaria:</label><br>
-            <input type="date" id="ultima_consulta" name="ultima_consulta"><br><br>
+            <label for="ultima_consulta">Fecha de Última Consulta Veterinaria:</label>
+            <input type="date" id="ultima_consulta" name="ultima_consulta">
             
-            <label>Seguro Médico para Mascotas:</label><br>
-            <input type="radio" id="seguro_si" name="seguro" value="si">
-            <label for="seguro_si">Sí</label>
-            <input type="radio" id="seguro_no" name="seguro" value="no" checked>
-            <label for="seguro_no">No</label><br><br>
+            <div class="radio-group">
+                <label>Seguro Médico para Mascotas:</label>
+                <div>
+                    <input type="radio" id="seguro_si" name="seguro" value="si">
+                    <label for="seguro_si">Sí</label>
+                    <input type="radio" id="seguro_no" name="seguro" value="no" checked>
+                    <label for="seguro_no">No</label>
+                </div>
+            </div>
             
-            <label for="veterinario">Nombre de su Veterinario de Confianza:</label><br>
-            <input type="text" id="veterinario" name="veterinario"><br><br>
+            <label for="veterinario">Nombre de su Veterinario de Confianza:</label>
+            <input type="text" id="veterinario" name="veterinario">
             
-            <label for="observaciones">Observaciones Especiales:</label><br>
-            <textarea id="observaciones" name="observaciones" rows="4" placeholder="Necesidades particulares, fobias, comportamientos especiales"></textarea><br><br>
+            <label for="observaciones">Observaciones Especiales:</label>
+            <textarea id="observaciones" name="observaciones" rows="4" placeholder="Necesidades particulares, fobias, comportamientos especiales"></textarea>
         </fieldset>
         
         <input type="submit" id="submit" value="Registrar Mascota">

@@ -85,7 +85,6 @@ body.dark-theme{
     padding-top: 5rem;
 }
 
-
 /*Header*/
 
 .header {
@@ -283,6 +282,18 @@ active-link::after {
    background-color: var(--first-color); 
 }
 
+/* Clases para control de visualización por rol */
+.admin-only, .user-only {
+    display: none;
+}
+
+.show-admin .admin-only {
+    display: grid !important;
+}
+
+.show-user .user-only {
+    display: grid !important;
+}
 
 /* Para dispositivos pequeños */
 @media screen and (max-width: 360px) {

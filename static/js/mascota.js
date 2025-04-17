@@ -68,8 +68,8 @@ function mostrarMascotasEnCards(mascotas) {
                 <span>${mascota.peso ? mascota.peso + ' kg' : 'No especificado'}</span>
             </div>
             <div class="dato-mascota">
-                <strong>Vacunas:</strong>
-                <span>${mascota.vacunas || 'No especificado'}</span>
+              <strong>Vacunas:</strong>
+              <span>${mascota.vacunas ? mascota.vacunas.join(', ') : 'No especificado'}</span>
             </div>
             
             <button class="btn-ver-mas">Ver más detalles ↓</button>
@@ -169,7 +169,7 @@ async function manejarEdicionMascota() {
 
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
-      window.location.href = "login.html";
+      window.location.href = "/vistas/login.html";
       return;
     }
 
@@ -207,7 +207,9 @@ async function manejarEdicionMascota() {
         document.getElementById('alimentacion').value = mascota.alimentacion || '';
         document.getElementById('comportamiento').value = mascota.comportamiento || '';
         document.getElementById('medicamentos').value = mascota.medicamentos || '';
-        document.getElementById('vacunas').value = mascota.vacunas || '';
+        const vacunas = mascota.vacunas || [];
+        document.querySelectorAll('input[name="vacunas"]').forEach(checkbox => {
+        checkbox.checked = vacunas.includes(checkbox.value)});
         document.getElementById('alergias').value = mascota.alergias || '';
         document.getElementById('historial').value = mascota.historial || '';
         document.getElementById('ultima_consulta').value = mascota.ultimaConsulta || '';
@@ -220,7 +222,13 @@ async function manejarEdicionMascota() {
         e.preventDefault();
         
         try {
-          const mascotaData = {
+          // Obtener los checkboxes de vacunas seleccionados
+        const vacunasSeleccionadas = [];
+        document.querySelectorAll('input[name="vacunas"]:checked').forEach(checkbox => {
+            vacunasSeleccionadas.push(checkbox.value);
+        });
+        
+        const mascotaData = {
             nombre: document.getElementById("nombre").value,
             especie: document.getElementById("especie").value,
             raza: document.getElementById("raza").value,
@@ -230,7 +238,8 @@ async function manejarEdicionMascota() {
             alimentacion: document.getElementById("alimentacion").value,
             comportamiento: document.getElementById("comportamiento").value,
             medicamentos: document.getElementById("medicamentos").value,
-            vacunas: document.getElementById("vacunas").value,
+            vacunas: vacunasSeleccionadas, // Cambiamos a array de vacunas
+            fechaUltimaVacuna: document.getElementById("fecha_ultima_vacuna").value || null,
             alergias: document.getElementById("alergias").value,
             historial: document.getElementById("historial").value,
             ultimaConsulta: document.getElementById("ultima_consulta").value,
@@ -239,7 +248,7 @@ async function manejarEdicionMascota() {
             observaciones: document.getElementById("observaciones").value,
             dueñoId: user.uid,
             fechaActualizacion: new Date()
-          };
+        };
 
           await updateDoc(doc(db, "mascotas", idMascota), mascotaData);
           alert("Mascota actualizada correctamente");
@@ -253,7 +262,7 @@ async function manejarEdicionMascota() {
   });
 }
 
-// 2. Modifica tu EventListenersAcciones para redirigir correctamente
+// Modifica EventListenersAcciones para redirigir correctamente
 function EventListenersAcciones() {
   // Eliminar mascota (mantén este código igual)
   document.querySelectorAll('.btn-eliminar').forEach(btn => {
@@ -301,7 +310,7 @@ function EventListenersAcciones() {
 });
 }
 
-// 3. Modifica el event listener DOMContentLoaded para incluir manejarEdicionMascota
+// Modifica el event listener DOMContentLoaded para incluir manejarEdicionMascota
 document.addEventListener('DOMContentLoaded', () => {
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
@@ -322,7 +331,14 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         try {
           // Obtener valores del formulario
-          const mascotaData = {
+          // Obtener los checkboxes de vacunas seleccionados
+        const vacunasSeleccionadas = [];
+        document.querySelectorAll('input[name="vacunas"]:checked').forEach(checkbox => {
+            vacunasSeleccionadas.push(checkbox.value);
+        });
+        
+        // Obtener valores del formulario
+        const mascotaData = {
             nombre: document.getElementById("nombre").value,
             especie: document.getElementById("especie").value,
             raza: document.getElementById("raza").value,
@@ -332,16 +348,17 @@ document.addEventListener('DOMContentLoaded', () => {
             alimentacion: document.getElementById("alimentacion").value,
             comportamiento: document.getElementById("comportamiento").value,
             medicamentos: document.getElementById("medicamentos").value,
-            vacunas: document.getElementById("vacunas").value,
+            vacunas: vacunasSeleccionadas, // Cambiamos a array de vacunas
+            fechaUltimaVacuna: document.getElementById("fecha_ultima_vacuna").value || null,
             alergias: document.getElementById("alergias").value,
             historial: document.getElementById("historial").value,
             ultimaConsulta: document.getElementById("ultima_consulta").value,
             seguro: document.querySelector('input[name="seguro"]:checked')?.value || 'no',
             veterinario: document.getElementById("veterinario").value,
             observaciones: document.getElementById("observaciones").value,
-            dueñoId: user.uid, // Relacionar con el usuario
+            dueñoId: user.uid,
             fechaCreacion: new Date()
-          };
+        };
   
           // Validación básica
           if (!mascotaData.nombre || !mascotaData.especie) {
