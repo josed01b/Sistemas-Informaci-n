@@ -16,7 +16,7 @@ import {
 // Función para listar mascotas del usuario actual
 async function listarMascotasUsuario(userId) {
   try {
-    const q = query(collection(db, "mascotas"), where("dueñoId", "==", userId));
+    const q = query(collection(db, "mascotas"), where("ownerId", "==", userId));
     const querySnapshot = await getDocs(q);
     
     const mascotas = [];
@@ -27,7 +27,7 @@ async function listarMascotasUsuario(userId) {
     return mascotas;
   } catch (error) {
     console.error("Error al listar mascotas:", error);
-    return [];
+    throw error;
   }
 }
 
@@ -356,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
             seguro: document.querySelector('input[name="seguro"]:checked')?.value || 'no',
             veterinario: document.getElementById("veterinario").value,
             observaciones: document.getElementById("observaciones").value,
-            dueñoId: user.uid,
+            ownerId: user.uid,
             fechaCreacion: new Date()
         };
   
