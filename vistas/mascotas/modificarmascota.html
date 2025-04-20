@@ -3,46 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Mascota</title>
+    <title>Registro Mascota</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/styleFormPet.css">
+    <link rel="stylesheet" href="/static/css/styleForms.css">
 </head>
 <body>
-    <h1>Editar Información de Mascota</h1>
-    <form id="form-mascota">
+    <h1>Modifica la Información de tu Mascota</h1>
+    <form id="form-mascota"  class="form-mascota">
+        
         <!-- Información básica -->
         <fieldset>
             <legend>Información Básica</legend>
-            <label for="nombre">Nombre de la mascota:</label><br>
-            <input type="text" id="nombre" name="nombre" required><br><br>
+            <label for="nombre">Nombre de la mascota:</label>
+            <input type="text" id="nombre" name="nombre" required>
             
-            <label for="especie">Especie:</label><br>
+            <label for="especie">Especie:</label>
             <select id="especie" name="especie" required>
                 <option value="">Seleccione...</option>
                 <option value="perro">Perro</option>
                 <option value="gato">Gato</option>
-            </select><br><br>
+            </select>
             
-            <label for="raza">Raza:</label><br>
-            <input type="text" id="raza" name="raza" required><br><br>
+            <label for="raza">Raza:</label>
+            <input type="text" id="raza" name="raza" required>
             
-            <label for="color">Color:</label><br>
-            <input type="text" id="color" name="color" required><br><br>
+            <label for="color">Color:</label>
+            <input type="text" id="color" name="color" required>
             
-            <label for="peso">Peso (Kg):</label><br>
-            <input type="number" id="peso" name="peso" step="0.1" min="0" required><br><br>
+            <label for="peso">Peso (Kg):</label>
+            <input type="number" id="peso" name="peso" step="0.1" min="0" required>
             
-            <label for="edad">Edad de la mascota:</label><br>
-            <input type="text" id="edad" name="edad" placeholder="Ej: 3 años, 6 meses" required><br><br>
+            <label for="edad">Edad de la mascota:</label>
+            <input type="text" id="edad" name="edad" placeholder="Ej: 3 años, 6 meses" required>
         </fieldset>
         
         <!-- Cuidados y salud -->
         <fieldset>
             <legend>Cuidados y Salud</legend>
-            <label for="alimentacion">Tipo de alimentación:</label><br>
-            <input type="text" id="alimentacion" name="alimentacion" placeholder="Ej: Croquetas premium, dieta casera"><br><br>
+            <label for="alimentacion">Tipo de alimentación:</label>
+            <input type="text" id="alimentacion" name="alimentacion" placeholder="Ej: Croquetas premium, dieta casera">
             
-            <label for="comportamiento">Comportamiento:</label><br>
+            <label for="comportamiento">Comportamiento:</label>
             <select id="comportamiento" name="comportamiento">
                 <option value="">Seleccione...</option>
                 <option value="agresivo">Agresivo</option>
@@ -50,43 +51,131 @@
                 <option value="tranquilo">Tranquilo</option>
                 <option value="timido">Tímido</option>
                 <option value="sociable">Sociable</option>
-            </select><br><br>
+            </select>
             
-            <label for="medicamentos">Medicamentos (si aplica):</label><br>
-            <textarea id="medicamentos" name="medicamentos" rows="3" placeholder="Indique medicamentos y dosis"></textarea><br><br>
+            <label for="medicamentos">Medicamentos (si aplica):</label>
+            <textarea id="medicamentos" name="medicamentos" rows="3" placeholder="Indique medicamentos y dosis"></textarea>
+
+            <fieldset class="vacunas-section">
+                <legend>Registro de Vacunas</legend>
+                
+                <div class="vaccine-grid">
+                    <!-- Vacuna 1 -->
+                    <div class="vaccine-item">
+                        <label>
+                            <input type="checkbox" name="vacuna_rabia" class="vaccine-check">
+                            Rabia
+                        </label>
+                        <div class="vaccine-details">
+                            <label>Estado:
+                                <select name="estado_rabia" class="vaccine-status">
+                                    <option value="completa">Completa</option>
+                                    <option value="pendiente">Pendiente</option>
+                                    <option value="no_aplicada" selected>No aplicada</option>
+                                </select>
+                            </label>
+                            <label>Fecha:
+                                <input type="date" name="fecha_rabia" class="vaccine-date">
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Vacuna 2 -->
+                    <div class="vaccine-item">
+                        <label>
+                            <input type="checkbox" name="vacuna_leptospira" class="vaccine-check">
+                            Leptospira
+                        </label>
+                        <div class="vaccine-details">
+                            <label>Estado:
+                                <select name="estado_leptospira" class="vaccine-status">
+                                    <option value="completa">Completa</option>
+                                    <option value="pendiente">Pendiente</option>
+                                    <option value="no_aplicada" selected>No aplicada</option>
+                                </select>
+                            </label>
+                            <label>Fecha:
+                                <input type="date" name="fecha_leptospira" class="vaccine-date">
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="vaccine-item">
+                        <label>
+                            <input type="checkbox" name="vacuna_bordetella" class="vaccine-check">
+                            Bordetella
+                        </label>
+                        <div class="vaccine-details">
+                            <label>Estado:
+                                <select name="estado_bordetella" class="vaccine-status">
+                                    <option value="completa">Completa</option>
+                                    <option value="pendiente">Pendiente</option>
+                                    <option value="no_aplicada" selected>No aplicada</option>
+                                </select>
+                            </label>
+                            <label>Fecha:
+                                <input type="date" name="fecha_bordetella" class="vaccine-date">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="vaccine-item">
+                        <label>
+                            <input type="checkbox" name="vacuna_coronavirus" class="vaccine-check">
+                            Coronavirus
+                        </label>
+                        <div class="vaccine-details">
+                            <label>Estado:
+                                <select name="estado_coronavirus" class="vaccine-status">
+                                    <option value="completa">Completa</option>
+                                    <option value="pendiente">Pendiente</option>
+                                    <option value="no_aplicada" selected>No aplicada</option>
+                                </select>
+                            </label>
+                            <label>Fecha:
+                                <input type="date" name="fecha_coronavirus" class="vaccine-date">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
             
-            <label for="vacunas">Vacunas recibidas:</label><br>
-            <textarea id="vacunas" name="vacunas" rows="3" required placeholder="Indique nombre de vacunas y fechas de aplicación"></textarea><br><br>
+            <label for="fecha_ultima_vacuna">Fecha de última vacuna:</label>
+            <input type="date" id="fecha_ultima_vacuna" name="fecha_ultima_vacuna">
             
-            <label for="alergias">Alergias (si aplica):</label><br>
-            <textarea id="alergias" name="alergias" rows="2" placeholder="Indique alergias conocidas"></textarea><br><br>
+            <label for="alergias">Alergias (si aplica):</label>
+            <textarea id="alergias" name="alergias" rows="2" placeholder="Indique alergias conocidas"></textarea>
             
-            <label for="historial">Historial Médico:</label><br>
-            <textarea id="historial" name="historial" rows="4" placeholder="Enfermedades previas, cirugías, tratamientos especiales"></textarea><br><br>
+            <label for="historial">Historial Médico:</label>
+            <textarea id="historial" name="historial" rows="4" placeholder="Enfermedades previas, cirugías, tratamientos especiales"></textarea>
         </fieldset>
         
         <!-- Datos adicionales -->
         <fieldset>
             <legend>Datos Adicionales</legend>
-            <label for="ultima_consulta">Fecha de Última Consulta Veterinaria:</label><br>
-            <input type="date" id="ultima_consulta" name="ultima_consulta"><br><br>
+            <label for="ultima_consulta">Fecha de Última Consulta Veterinaria:</label>
+            <input type="date" id="ultima_consulta" name="ultima_consulta">
             
-            <label>Seguro Médico para Mascotas:</label><br>
-            <input type="radio" id="seguro_si" name="seguro" value="si">
-            <label for="seguro_si">Sí</label>
-            <input type="radio" id="seguro_no" name="seguro" value="no">
-            <label for="seguro_no">No</label><br><br>
+            <div class="radio-group">
+                <label>Seguro Médico para Mascotas:</label>
+                <div>
+                    <input type="radio" id="seguro_si" name="seguro" value="si">
+                    <label for="seguro_si">Sí</label>
+                    <input type="radio" id="seguro_no" name="seguro" value="no" checked>
+                    <label for="seguro_no">No</label>
+                </div>
+            </div>
             
-            <label for="veterinario">Nombre de su Veterinario de Confianza:</label><br>
-            <input type="text" id="veterinario" name="veterinario"><br><br>
+            <label for="veterinario">Nombre de su Veterinario de Confianza:</label>
+            <input type="text" id="veterinario" name="veterinario">
             
-            <label for="observaciones">Observaciones Especiales:</label><br>
-            <textarea id="observaciones" name="observaciones" rows="4" placeholder="Necesidades particulares, fobias, comportamientos especiales"></textarea><br><br>
+            <label for="observaciones">Observaciones Especiales:</label>
+            <textarea id="observaciones" name="observaciones" rows="4" placeholder="Necesidades particulares, fobias, comportamientos especiales"></textarea>
         </fieldset>
         
-        <button type="submit">Guardar Cambios</button>
+        <input type="submit" id="btn-actualizar" value="Actualizar Mascota">
     </form>
-
+    <script type="module" src="/static/js/firebase-config.js" defer></script>
     <script type="module" src="/static/js/mascota.js" defer></script>
 </body>
 </html>

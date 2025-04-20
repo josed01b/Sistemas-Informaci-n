@@ -55,27 +55,90 @@
             
             <label for="medicamentos">Medicamentos (si aplica):</label>
             <textarea id="medicamentos" name="medicamentos" rows="3" placeholder="Indique medicamentos y dosis"></textarea>
-            
-            <!-- Sección modificada de vacunas -->
-            <label>Vacunas recibidas:</label>
-            <div class="vaccine-checkbox-group">
-                <div class="vaccine-checkbox-item">
-                    <input type="checkbox" id="vacuna_rabia" name="vacunas" value="rabia">
-                    <label for="vacuna_rabia">Rabia</label>
+
+            <fieldset class="vacunas-section">
+                <legend>Registro de Vacunas</legend>
+                
+                <div class="vaccine-grid">
+                    <!-- Vacuna 1 -->
+                    <div class="vaccine-item">
+                        <label>
+                            <input type="checkbox" name="vacuna_rabia" class="vaccine-check">
+                            Rabia
+                        </label>
+                        <div class="vaccine-details">
+                            <label>Estado:
+                                <select name="estado_rabia" class="vaccine-status">
+                                    <option value="completa">Completa</option>
+                                    <option value="pendiente">Pendiente</option>
+                                    <option value="no_aplicada" selected>No aplicada</option>
+                                </select>
+                            </label>
+                            <label>Fecha:
+                                <input type="date" name="fecha_rabia" class="vaccine-date">
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Vacuna 2 -->
+                    <div class="vaccine-item">
+                        <label>
+                            <input type="checkbox" name="vacuna_leptospira" class="vaccine-check">
+                            Leptospira
+                        </label>
+                        <div class="vaccine-details">
+                            <label>Estado:
+                                <select name="estado_leptospira" class="vaccine-status">
+                                    <option value="completa">Completa</option>
+                                    <option value="pendiente">Pendiente</option>
+                                    <option value="no_aplicada" selected>No aplicada</option>
+                                </select>
+                            </label>
+                            <label>Fecha:
+                                <input type="date" name="fecha_leptospira" class="vaccine-date">
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="vaccine-item">
+                        <label>
+                            <input type="checkbox" name="vacuna_bordetella" class="vaccine-check">
+                            Bordetella
+                        </label>
+                        <div class="vaccine-details">
+                            <label>Estado:
+                                <select name="estado_bordetella" class="vaccine-status">
+                                    <option value="completa">Completa</option>
+                                    <option value="pendiente">Pendiente</option>
+                                    <option value="no_aplicada" selected>No aplicada</option>
+                                </select>
+                            </label>
+                            <label>Fecha:
+                                <input type="date" name="fecha_bordetella" class="vaccine-date">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="vaccine-item">
+                        <label>
+                            <input type="checkbox" name="vacuna_coronavirus" class="vaccine-check">
+                            Coronavirus
+                        </label>
+                        <div class="vaccine-details">
+                            <label>Estado:
+                                <select name="estado_coronavirus" class="vaccine-status">
+                                    <option value="completa">Completa</option>
+                                    <option value="pendiente">Pendiente</option>
+                                    <option value="no_aplicada" selected>No aplicada</option>
+                                </select>
+                            </label>
+                            <label>Fecha:
+                                <input type="date" name="fecha_coronavirus" class="vaccine-date">
+                            </label>
+                        </div>
+                    </div>
                 </div>
-                <div class="vaccine-checkbox-item">
-                    <input type="checkbox" id="vacuna_leptospira" name="vacunas" value="leptospira">
-                    <label for="vacuna_leptospira">Leptospira</label>
-                </div>
-                <div class="vaccine-checkbox-item">
-                    <input type="checkbox" id="vacuna_bordetella" name="vacunas" value="bordetella">
-                    <label for="vacuna_bordetella">Bordetella</label>
-                </div>
-                <div class="vaccine-checkbox-item">
-                    <input type="checkbox" id="vacuna_coronavirus" name="vacunas" value="coronavirus">
-                    <label for="vacuna_coronavirus">Coronavirus</label>
-                </div>
-            </div>
+            </fieldset>
             
             <label for="fecha_ultima_vacuna">Fecha de última vacuna:</label>
             <input type="date" id="fecha_ultima_vacuna" name="fecha_ultima_vacuna">
