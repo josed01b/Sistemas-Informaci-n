@@ -1,19 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 .home_content {
-  flex-grow: 1;
-  padding: 20px;
-  transition: margin-left 0.5s;
-  margin-left: 150px; /* Igual al ancho del sidebar */
+  margin-left: 350px; /* Asegúrate que este valor coincida con el ancho real del sidebar */
+  padding: 40px 30px;
+  min-height: 100vh;
 }
 
 
 /* ESTILOS PARA LAS CARDS DE MASCOTAS */
 .contenedor-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Cambiado de 300px a 350px */
-  gap: 25px; /* Aumentado el espacio entre cards */
-  padding: 25px;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+  justify-items: center;
 }
 
 .card-mascota {
@@ -178,6 +177,13 @@
   }
 }
 
-h1 {
+.header-mascotas {
   text-align: center;
+  margin-bottom: 30px;
+}
+
+.header-mascotas h1 {
+  font-size: 2.5rem;
+  color: #1e4f61;
+  margin-bottom: 15px;
 }

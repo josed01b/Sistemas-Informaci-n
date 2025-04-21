@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -17,27 +17,28 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // Verificar si el usuario actual es admin
-async function verifyAdmin() {
-  const user = auth.currentUser;
-  if (!user) {
-    window.location.href = "/vistas/login.html";
-    return false;
-  }
-  
-  const adminDoc = await getDoc(doc(db, "admins", user.uid));
-  if (!adminDoc.exists()) {
-    alert("Solo los administradores pueden registrar nuevos administradores");
-    window.location.href = "/vistas/homepage.html";
-    return false;
-  }
-  return true;
+function verifyAdmin(callback) {
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      window.location.href = "/vistas/login.html";
+      return;
+    }
+
+    const adminDoc = await getDoc(doc(db, "admins", user.uid));
+    if (!adminDoc.exists()) {
+      alert("Solo los administradores pueden registrar nuevos administradores");
+      window.location.href = "/vistas/homepage.html";
+      return;
+    }
+
+    // Usuario verificado como admin
+    if (callback) callback();
+  });
 }
 
 // Registrar nuevo usuario/admin
 async function registerAdmin(event) {
   event.preventDefault();
-
-  if (!await verifyAdmin()) return;
 
   const formData = {
     userName: document.getElementById("nombre").value,
@@ -89,14 +90,24 @@ async function registerAdmin(event) {
   }
 }
 
-// Configuración inicial al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
-  // Verificar permisos primero
-  verifyAdmin();
-  
-  // Configurar el evento de submit
-  const submitBtn = document.getElementById("submit");
-  if (submitBtn) {
-    submitBtn.addEventListener('click', registerAdmin);
-  }
+  onAuthStateChanged(auth, async (user) => {  // Usa async ya que verifyAdmin puede ser asíncrona
+    if (user) {
+      try {
+        // Verifica si es administrador
+        verifyAdmin();
+
+        const form = document.querySelector('form'); // Seleccionar el formulario
+        if (form) {
+          form.addEventListener('submit', registerAdmin); // Escuchar el evento submit
+        }
+      } catch (error) {
+        console.error("No se pudo verificar el admin: ", error);
+        window.location.href = "/vistas/login.html";  // Redirige si el usuario no es admin o algo falla
+      }
+    } else {
+      // Redirige si no hay usuario
+      window.location.href = "/vistas/login.html";
+    }
+  });
 });

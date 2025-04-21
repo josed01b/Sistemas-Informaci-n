@@ -5,13 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin</title>
     <link rel="stylesheet" href="/static/css/styleSidebar.css">
-    <script src="/static/css/style-dashboard.css"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/static/css/style-dashboard.css">
 </head>
 <body>
     <div id="sidebar-container"></div>
-    <div class="content">
-
-    </div>
+    <main class="main">
+        <section class="dashboard__content">
+          <h2 class="dashboard__chart-title">Estado de Vacunación de Mascotas</h2>
+          <div class="dashboard__chart">
+            <!-- Gráfico de barras aquí -->
+            <canvas id="vaccinationChart"></canvas>
+          </div>
+      
+          <div class="dashboard__stats">
+            <!-- Tarjetas o resumen de datos -->
+            <div class="stat-card">
+                <h3>Total Mascotas</h3>
+                <p id="total-pets">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Vacunación Completa</h3>
+                <p id="fully-vaccinated">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Vacunación Parcial</h3>
+                <p id="partial-vaccinated">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Sin Vacunar</h3>
+                <p id="not-vaccinated">0</p>
+            </div>
+          </div>
+      
+          <div class="dashboard__table">
+            <!-- Tabla de datos -->
+            <div class="table-container">
+                <h2>Detalle por Mascota</h2>
+                <table id="pets-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Especie</th>
+                            <th>Vacunas</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Los datos se llenan dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+          </div>
+        </section>
+      </main>
 
     <script type="module" src="/static/js/firebase-config.js" defer></script>
     <script type="module" src="/static/js/sidebar.js" defer></script>
