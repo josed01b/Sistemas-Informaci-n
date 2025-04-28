@@ -1,4 +1,12 @@
 /* Estilos generales para todos los formularios */
+:root {
+    --card-bg: #ffffff;
+    --danger: #e63946;
+    --warning: #ffbe0b;
+    --success: #2a9d8f;
+    --text-color: #333333;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f5f7fa;
@@ -134,8 +142,79 @@ input[type="submit"] {
     transition: background-color 0.3s;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover{
     background-color: #153946;
+}
+
+#cambiar {
+    background: linear-gradient(135deg, #1e4f61 0%, #2a9d8f 100%);
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    font-size: 16px;
+    border-radius: 30px; /* Bordes más redondeados */
+    cursor: pointer;
+    font-weight: 600;
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    margin: 30px auto 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+#cambiar:hover {
+    background: linear-gradient(135deg, #153946 0%, #21867a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+#cambiar:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#cambiar:disabled {
+    background: linear-gradient(135deg, #cccccc 0%, #999999 100%);
+    transform: none;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+/* Efecto adicional para cuando es válido */
+#cambiar:not(:disabled)::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0) 45%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 55%
+    );
+    transform: rotate(30deg);
+    transition: all 0.3s;
+}
+
+#cambiar:not(:disabled):hover::after {
+    animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+    0% {
+        left: -50%;
+    }
+    100% {
+        left: 150%;
+    }
 }
 
 /* Estilos para la sección de vacunas */
@@ -192,6 +271,58 @@ input[type="submit"]:hover {
     margin-right: 8px;
 }
 
+/* Estilo para la contraseña*/
+.password-strength {
+    margin: 20px 0;
+    padding: 15px;
+    background: var(--card-bg);
+    border-radius: 8px;
+}
+
+.requirements-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.requirements-list li {
+    position: relative;
+    padding-left: 25px;
+    margin: 5px 0;
+}
+
+.requirements-list li:before {
+    content: "✖";
+    position: absolute;
+    left: 0;
+    color: var(--danger);
+}
+
+.requirements-list li.valid:before {
+    content: "✓";
+    color: var(--success);
+}
+
+.strength-meter {
+    height: 5px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--danger);
+    transition: all 0.3s;
+}
+
+.strength-text span {
+    font-weight: bold;
+    color: var(--danger);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     form {
@@ -202,3 +333,7 @@ input[type="submit"]:hover {
         grid-template-columns: 1fr;
     }
 }
+
+
+
+

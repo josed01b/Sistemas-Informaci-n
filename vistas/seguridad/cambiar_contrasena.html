@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cambiar Contraseña</title>
     <link rel="stylesheet" href="/static/css/styleForms.css">
     <link rel="stylesheet" href="/static/css/styleSidebar.css">
 </head>
@@ -11,18 +11,43 @@
     <div id="sidebar-container"></div>
 
     <div class="main">
-        <form method="post">   
+        <form id="passwordForm">   
             <div class="input-group">
-                <label for="correo">Correo Electrónico:</label>
-                <input type="email" id="correo" name="correo" required placeholder="Ingrese su correo">
+                <label for="currentPassword">Contraseña Actual:</label>
+                <input type="password" id="currentPassword" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="newPassword">Nueva Contraseña:</label>
+                <input type="password" id="newPassword" required>
             </div>
 
-            <input type="submit" id="cambiar" value="Cambiar contraseña">
+            <div class="input-group">
+                <label for="confirmPassword">Confirmar Nueva Contraseña:</label>
+                <input type="password" id="confirmPassword" required>
+            </div>
+
+            <div class="password-strength">
+                <h4>Requisitos de contraseña:</h4>
+                <ul class="requirements-list">
+                    <li id="length" class="invalid">Al menos 8 caracteres</li>
+                    <li id="uppercase" class="invalid">1 letra mayúscula</li>
+                    <li id="lowercase" class="invalid">1 letra minúscula</li>
+                    <li id="number" class="invalid">1 número</li>
+                    <li id="special" class="invalid">1 carácter especial (!@#$%^&*)</li>
+                </ul>
+                <div class="strength-meter">
+                    <div class="strength-bar"></div>
+                </div>
+                <p class="strength-text">Seguridad: <span>Débil</span></p>
+            </div>
+
+            <button type="submit" id="cambiar">Cambiar Contraseña</button>
         </form>
     </div>
 
-    <script type="module" src="/static/js/firebase-config.js" defer></script>
-    <script type="module" src="/static/js/sidebar.js" defer></script>
-    <script type="module" src="/static/js/cambiar_contrasena.js" defer></script>
+    <script type="module" src="/static/js/firebase-config.js"></script>
+    <script type="module" src="/static/js/sidebar.js"></script>
+    <script type="module" src="/static/js/cambiar_contrasena.js"></script>
 </body>
 </html>
