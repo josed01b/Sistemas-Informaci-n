@@ -52,12 +52,12 @@ form.addEventListener('submit', async function(event) {
 
         // 2. Guardar información en Firestore
         await setDoc(doc(db, "users", user.uid), {
-            nombre: userData.nombre,
-            identificacion: userData.identificacion,
-            direccion: userData.direccion,
-            edad: parseInt(userData.edad),
+            userName: userData.nombre,
+            id: userData.identificacion,
+            address: userData.direccion,
+            age: parseInt(userData.edad),
             email: userData.email,
-            telefono: userData.telefono,
+            tel: userData.telefono,
             preferencia: userData.preferencia,
             role: userData.role,
             createdAt: new Date()
@@ -65,7 +65,7 @@ form.addEventListener('submit', async function(event) {
 
         // 3. Redirigir a homepage
         alert("Registro exitoso!");
-        window.location.href = "vistas/homepage.html";
+        window.location.href = "../homepage.html";
     } catch (error) {
         console.error("Error en el registro:", error);
         alert(`Error: ${error.message}`);

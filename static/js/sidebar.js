@@ -85,26 +85,30 @@ fetch("/vistas/plantilla/sidebar.html")
     // Manejo de autenticación
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        // Primero verifica en la colección de admins
+
         const adminDoc = await getDoc(doc(db, "admins", user.uid));
-        
         if (adminDoc.exists()) {
           // Es administrador
           const adminData = adminDoc.data();
-          document.getElementById("nombre").textContent = adminData.userName;
+          console.log("Datos de admin:", adminData);
+          document.getElementById("nombre").textContent = adminData.userName || adminData.nombre || "Admin";
           document.getElementById("correo").textContent = adminData.email;
           document.getElementById("sidebar").classList.add("show-admin");
         } else {
-          // Si no es admin, verifica en users
+
           const userDoc = await getDoc(doc(db, "users", user.uid));
           if (userDoc.exists()) {
             const userData = userDoc.data();
-            document.getElementById("nombre").textContent = userData.userName;
+            console.log("Datos de usuario:", userData);
+            document.getElementById("nombre").textContent = userData.userName || userData.nombre || "Usuario";
             document.getElementById("correo").textContent = userData.email;
             document.getElementById("sidebar").classList.add("show-user");
+          } else {
+            console.log("El usuario está autenticado pero no tiene documento en Firestore");
           }
         }
       } else {
+        console.log("Usuario no autenticado, redirigiendo a login");
         window.location.href = "/vistas/login.html";
       }
     });
