@@ -20,103 +20,119 @@ function getVaccinationStatus(vacunas) {
   return 'partial';
 }
 
-// Función para crear/actualizar la gráfica
 function updateChart(stats) {
   const canvas = document.getElementById('vaccinationChart');
-if (!canvas) {
+  if (!canvas) {
     console.error('No se encontró el elemento canvas para la gráfica');
     return;
-}
-const ctx = canvas.getContext('2d');  // <-- AQUI DEFINES ctx
+  }
+  const ctx = canvas.getContext('2d');
 
-// Si ya existe una gráfica previa, destrúyela antes de crear una nueva
-if (window.vaccinationChart) {
+  // Si ya existe una gráfica previa, destrúyela antes de crear una nueva
+  if (window.vaccinationChart) {
     window.vaccinationChart.destroy();
-}
-// Variables CSS
-const styles = getComputedStyle(document.body);
-const textColor = styles.getPropertyValue('--text-color').trim() || '#f1f5f9';
-const bgComplete = styles.getPropertyValue('--accent').trim() || '#38bdf8';
-const bgPartial = styles.getPropertyValue('--warning').trim() || '#facc15';
-const bgNone = styles.getPropertyValue('--danger').trim() || '#f43f5e';
-const gridLineColor = 'rgba(255, 255, 255, 0.05)';
+  }
+  
+  // Variables CSS
+  const styles = getComputedStyle(document.body);
+  const textColor = styles.getPropertyValue('--text-color').trim() || '#f1f5f9';
+  const bgComplete = styles.getPropertyValue('--accent').trim() || '#38bdf8';
+  const bgPartial = styles.getPropertyValue('--warning').trim() || '#facc15';
+  const bgNone = styles.getPropertyValue('--danger').trim() || '#f43f5e';
+  const gridLineColor = 'rgba(255, 255, 255, 0.05)';
 
-window.vaccinationChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['Completas', 'Parciales', 'Sin vacunar'],
-    datasets: [{
-      label: 'Estado de Vacunación',
-      data: [stats.complete, stats.partial, stats.none],
-      backgroundColor: [bgComplete, bgPartial, bgNone],
-      borderRadius: 8,
-      barThickness: 60,
-      borderSkipped: false,
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    layout: {
-      padding: {
-        top: 10,
-        bottom: 10
-      }
+  window.vaccinationChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Completas', 'Parciales', 'Sin vacunar'],
+      datasets: [{
+        label: 'Estado de Vacunación',
+        data: [stats.complete, stats.partial, stats.none],
+        backgroundColor: [bgComplete, bgPartial, bgNone],
+        borderRadius: 8,
+        barThickness: 60,
+        borderSkipped: false,
+      }]
     },
-    plugins: {
-      legend: {
-        display: false
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: {
+        padding: {
+          top: 10,
+          bottom: 10
+        }
       },
-      tooltip: {
-        backgroundColor: 'rgba(30,41,59,0.9)', // match card-bg
-        titleColor: textColor,
-        bodyColor: textColor,
-        titleFont: {
-          family: 'Poppins',
-          weight: 'bold',
-          size: 14
+      plugins: {
+        legend: {
+          display: false
         },
-        bodyFont: {
-          family: 'Nunito',
-          size: 13
+        tooltip: {
+          backgroundColor: 'rgba(30,41,59,0.9)',
+          titleColor: textColor,
+          bodyColor: textColor,
+          titleFont: {
+            family: 'Poppins',
+            weight: 'bold',
+            size: 14
+          },
+          bodyFont: {
+            family: 'Nunito',
+            size: 13
+          },
+          padding: 10,
+          borderWidth: 1,
+          borderColor: gridLineColor,
+          cornerRadius: 8
         },
-        padding: 10,
-        borderWidth: 1,
-        borderColor: gridLineColor,
-        cornerRadius: 8
-      }
-    },
-    scales: {
-      x: {
-        ticks: {
+        // AQUI AGREGAMOS LAS ETIQUETAS DE DATOS
+        datalabels: {
+          display: true,
           color: textColor,
+          anchor: 'center',
+          align: 'center',
           font: {
             family: 'Nunito',
-            size: 12
+            size: 14,
+            weight: 'bold'
+          },
+          formatter: function(value) {
+            return value; // Muestra el valor tal cual
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: textColor,
+            font: {
+              family: 'Nunito',
+              size: 12
+            }
+          },
+          grid: {
+            display: false
           }
         },
-        grid: {
-          display: false
-        }
-      },
-      y: {
-        beginAtZero: true,
-        ticks: {
-          color: textColor,
-          font: {
-            family: 'Nunito',
-            size: 12
+        y: {
+          beginAtZero: true,
+          ticks: {
+            color: textColor,
+            font: {
+              family: 'Nunito',
+              size: 12
+            },
+            stepSize: 1
           },
-          stepSize: 1
-        },
-        grid: {
-          color: gridLineColor
+          grid: {
+            color: gridLineColor
+          }
         }
       }
-    }
-  }
-});
-
+    },
+    // Necesitamos agregar el plugin de datalabels
+    plugins: [ChartDataLabels]
+  });
 }
 
 // Función principal para cargar los datos
