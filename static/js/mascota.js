@@ -114,6 +114,28 @@ function setupDetallesButtons() {
     });
 }
 
+// Función para calcular la próxima consulta
+ 
+function calcularProximaConsulta(ultimaConsulta) {
+  if (!ultimaConsulta) return "";
+ 
+  const partes = ultimaConsulta.split("-");
+  const fechaUltima = new Date(parseInt(partes[0]), parseInt(partes[1]) - 1, parseInt(partes[2]));
+  const hoy = new Date();
+ 
+  const proximaConsulta = new Date(fechaUltima);
+  proximaConsulta.setFullYear(fechaUltima.getFullYear() + 1);
+ 
+  let mensaje = "";
+  if (proximaConsulta < hoy) {
+      mensaje = `<span style="color: red; font-weight: bold;">¡Consulta pendiente! Se recomienda agendar una cita.</span>`;
+  } else {
+      const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+      mensaje = `<span style="color: green;">Próxima consulta:  ${proximaConsulta.toLocaleDateString('es-ES', opciones)}</span>`;
+  }
+  return mensaje;
+}
+
 // Función para mostrar mascotas en cards
 function mostrarMascotasEnCards(mascotas) {
   const contenedor = document.getElementById("contenedor-cards");
@@ -188,6 +210,10 @@ function mostrarMascotasEnCards(mascotas) {
                   <div class="dato-mascota">
                       <strong>Última consulta:</strong>
                       <span>${mascota.ultimaConsulta || "No registrada"}</span>
+                  </div>
+                  <div class="dato-mascota">
+                      <strong>Proxima Consulta: </strong>
+                      <span>${calcularProximaConsulta(mascota.ultimaConsulta) || "No registrada"}</span>
                   </div>
                   <div class="dato-mascota">
                       <strong>Veterinario:</strong>
