@@ -97,6 +97,7 @@ document
       alert("Contraseña cambiada exitosamente");
       // Limpiar formulario
       document.getElementById("passwordForm").reset();
+      markPasswordNotificationAsRead();
     } catch (error) {
       console.error("Error al cambiar contraseña:", error);
 

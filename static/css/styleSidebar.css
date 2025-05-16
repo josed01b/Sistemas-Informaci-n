@@ -386,3 +386,32 @@ active-link::after {
     }
 }
 
+/* Notificaciones */
+.notification-icon-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.notification-badge {
+    position: relative;
+    display: none;
+    margin-left: 8px;
+    background-color: #e63946;
+    color: white;
+    border-radius: 50%;
+    min-width: 18px;
+    height: 18px;
+    font-size: 11px;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    line-height: 1;
+}
+
+
+
+/* Ajuste para tema oscuro */
+.dark-theme .notification-badge {
+    background-color: #f43f5e;
+}

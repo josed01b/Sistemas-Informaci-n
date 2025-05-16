@@ -25,36 +25,10 @@
             </div>
         </div>
 
-        <div class="aviso-importante" id="avisoImportante">
-            <div class="aviso-contenido">
-              <span class="aviso-cerrar" onclick="cerrarAviso()">&times;</span>
-              <h3>AVISO IMPORTANTE!</h3>
-              <p>Se recomienda cambiar la contraseña por mayor seguridad, puedes hacerlo desde este <a href="/vistas/seguridad/cambiar_contrasena.html">enlace</a> 
-                o desde las opcines laterales en "Ajustes".</p>
-            </div>
-          </div>
+        
     </div>
 
     
     <script type="module" src="/static/js/sidebar.js" defer></script>
-    <script>
-        // Mostrar el aviso cuando la página cargue
-        window.onload = function() {
-            document.getElementById('avisoImportante').style.display = 'block';
-        };
-        
-        // Función para cerrar el aviso
-        function cerrarAviso() {
-            document.getElementById('avisoImportante').style.display = 'none';
-            
-            // Guardar en localStorage para no mostrar de nuevo
-            localStorage.setItem('avisoVisto', 'true');
-        }
-        
-        // No mostrar si ya se vio antes
-        if(localStorage.getItem('avisoVisto') === 'true') {
-            document.getElementById('avisoImportante').style.display = 'none';
-        }
-    </script>
 </body>
 </html>

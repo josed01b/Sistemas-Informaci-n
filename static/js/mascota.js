@@ -115,7 +115,6 @@ function setupDetallesButtons() {
 }
 
 // Función para calcular la próxima consulta
- 
 function calcularProximaConsulta(ultimaConsulta) {
   if (!ultimaConsulta) return "";
  
@@ -250,6 +249,30 @@ function mostrarMascotasEnCards(mascotas) {
       `;
 
     contenedor.appendChild(card);
+  });
+
+  document.querySelectorAll('.btn-ver-mas').forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Encontrar el contenedor de detalles específico para esta card
+      const detalles = this.nextElementSibling;
+      
+      // Cerrar todos los demás detalles primero
+      document.querySelectorAll('.detalles-adicionales').forEach(d => {
+        if (d !== detalles) {
+          d.classList.remove('active');
+          d.previousElementSibling.textContent = 'Ver más detalles ↓';
+        }
+      });
+      
+      // Alternar solo los detalles de esta card
+      detalles.classList.toggle('active');
+      
+      // Cambiar el texto del botón
+      this.textContent = detalles.classList.contains('active') ? 
+        'Ocultar detalles ↑' : 'Ver más detalles ↓';
+    });
   });
 
   EventListenersAcciones();
@@ -453,31 +476,6 @@ function EventListenersAcciones() {
       window.location.href = `/vistas/mascotas/modificarmascota.html?id=${idMascota}`;
     });
   });
-
-  //ver detalles
-  document
-    .getElementById("contenedor-cards")
-    .addEventListener("click", function (e) {
-      if (e.target.classList.contains("btn-ver-mas")) {
-        const card = e.target.closest(".card-mascota");
-        const detalles = card.querySelector(".detalles-adicionales");
-
-        // Cerrar otros detalles abiertos
-        document
-          .querySelectorAll(".detalles-adicionales.active")
-          .forEach((d) => {
-            if (d !== detalles) {
-              d.classList.remove("active");
-              d.previousElementSibling.textContent = "Ver más detalles ↓";
-            }
-          });
-
-        detalles.classList.toggle("active");
-        e.target.textContent = detalles.classList.contains("active")
-          ? "Ver menos detalles ↑"
-          : "Ver más detalles ↓";
-      }
-    });
 }
 
 // Modifica el event listener DOMContentLoaded para incluir manejarEdicionMascota

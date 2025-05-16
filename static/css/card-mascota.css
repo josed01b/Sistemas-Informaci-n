@@ -115,9 +115,14 @@
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s ease;
+  padding: 0 15px; /* Añade padding para que el contenido no toque los bordes */
 }
+
 .detalles-adicionales.active {
-  max-height: 500px;
+  max-height: 1000px; /* Ajusta según el contenido máximo */
+  padding: 15px; /* Mismo padding que el card-body */
+  margin-top: 10px;
+  border-top: 1px solid rgba(0,0,0,0.1);
 }
 
 .btn-ver-mas {

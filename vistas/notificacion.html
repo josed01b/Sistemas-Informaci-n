@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones - Smart Vet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.css">
+    <link rel="stylesheet" href="/static/css/styleSidebar.css">
+    <link rel="stylesheet" href="/static/css/styleNotificacion.css">
+    <style>
+        /* Asegurar que el contenido no se solape con el sidebar */
+        body {
+            overflow-x: hidden;
+        }
+        
+        /* Ajustes adicionales para el tema oscuro */
+        .dark-theme .notification-card {
+            background: var(--body-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .dark-theme .mark-all-read {
+            color: var(--first-color);
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar-container"></div>
+
+    <div class="main-content">
+        <div class="notifications-container">
+            <div class="notifications-header">
+                <h1 class="notifications-title">Notificaciones</h1>
+                <button class="mark-all-read" id="mark-all-read">
+                    <i class="ri-check-line"></i>
+                    Marcar todas como leídas
+                </button>
+            </div>
+            
+            <div class="notification-list" id="notification-list">
+                <!-- Contenido dinámico de notificaciones -->
+                <div class="no-notifications">
+                    <i class="ri-notification-off-line" style="font-size: 40px; margin-bottom: 10px;"></i>
+                    <p>No tienes notificaciones nuevas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/static/js/sidebar.js"></script>
+    <script type="module">
+        import { loadNotificationsPage, setupNotificationEvents } from '/static/js/notificacion.js';
+    
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadNotificationsPage();
+            setupNotificationEvents();
+        });
+</script>
+</body>
+</html>

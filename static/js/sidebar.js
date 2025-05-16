@@ -8,11 +8,14 @@ import {
   getDoc,
 } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
+import { initPasswordNotifications } from './notificacion.js';
+
 /* Cargar sidebar*/
 fetch("/vistas/plantilla/sidebar.html")
   .then((response) => response.text())
   .then((data) => {
     document.getElementById("sidebar-container").innerHTML = data;
+
 
     //Mostrar el sidebar
     const showSidebar = (toggleId, sidebarId, headerId, mainId) => {
@@ -107,6 +110,8 @@ fetch("/vistas/plantilla/sidebar.html")
             console.log("El usuario está autenticado pero no tiene documento en Firestore");
           }
         }
+
+        initPasswordNotifications();
       } else {
         console.log("Usuario no autenticado, redirigiendo a login");
         window.location.href = "/vistas/login.html";
