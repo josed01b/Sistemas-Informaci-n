@@ -45,41 +45,6 @@
 .fa-bullseye { color: #3498db; }
 .fa-eye { color: #e74c3c; }
 
-
-/* Aviso de contraseña*/
-
-.aviso-importante {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 300px;
-    background-color: #f8f9fa;
-    border-left: 5px solid #ffc107;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 15px;
-    border-radius: 4px;
-    z-index: 1000;
-    display: none; /* Inicialmente oculto */
-  }
-  
-  .aviso-importante h3 {
-    margin-top: 0;
-    color: #343a40;
-  }
-  
-  .aviso-cerrar {
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
-    color: #6c757d;
-  }
-  
-  .aviso-cerrar:hover {
-    color: #343a40;
-  }
-
 /* === RESPONSIVIDAD === */
 @media (max-width: 768px) {
     .mv_container {

@@ -1,0 +1,441 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin-left: 30px;
+
+    min-height: 100vh;
+    background-color: #f8fafc;
+}
+
+/* Contenido principal */
+.main-content {
+    margin-left: 330px;
+    flex: 1;
+    padding: 40px 30px;
+    background-color: #f8fafc;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.main-header h1 {
+    font-size: 1.8rem;
+    color: #1e4f61;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+/* Botón */
+.add-btn {
+    background: linear-gradient(135deg, #3a7d94 0%, #1e4f61 100%);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    box-shadow: 0 4px 8px rgba(30, 79, 97, 0.15);
+    transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+    background: linear-gradient(135deg, #2c6a7d 0%, #153946 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(30, 79, 97, 0.2);
+}
+
+.add-btn:active {
+    transform: translateY(0);
+}
+
+/* Estado vacío */
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: #64748b;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.empty-state .material-icons {
+    font-size: 60px;
+    color: #cbd5e1;
+    margin-bottom: 20px;
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+    color: #475569;
+}
+
+/* Allergy Card Styles - Improved */
+.allergy-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(30, 79, 97, 0.1);
+    margin-bottom: 24px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.allergy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(30, 79, 97, 0.15);
+}
+
+.allergy-header {
+    padding: 18px 24px;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8fafc;
+}
+
+.allergy-title {
+    font-size: 1.3rem;
+    color: #1e293b;
+    font-weight: 600;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.allergy-pet {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #475569;
+    font-size: 0.95rem;
+    background: #f1f5f9;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.allergy-pet .material-icons {
+    font-size: 1.1rem;
+    color: #1e4f61;
+}
+
+.allergy-card-body {
+    padding: 24px;
+}
+
+.allergy-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.info-label {
+    font-weight: 500;
+    color: #64748b;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-value {
+    color: #334155;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 8px 0;
+    border-bottom: 1px dashed #e2e8f0;
+}
+
+/* Badges de severidad - Versión corregida */
+.severity-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid transparent;
+}
+
+/* Leve */
+.severity-badge.leve,
+.severity-badge.low,
+.severity-badge[class*="leve"],
+.severity-badge[class*="low"] {
+    background-color: #f0fdf4;
+    color: #166534;
+    border-color: #bbf7d0;
+}
+
+/* Moderado */
+.severity-badge.moderado,
+.severity-badge.medium,
+.severity-badge[class*="moderado"],
+.severity-badge[class*="medium"] {
+    background-color: #fffbeb;
+    color: #854d0e;
+    border-color: #fde68a;
+}
+
+/* Grave */
+.severity-badge.grave,
+.severity-badge.high,
+.severity-badge[class*="grave"],
+.severity-badge[class*="high"] {
+    background-color: #fef2f2;
+    color: #991b1b;
+    border-color: #fecaca;
+}
+
+/* Iconos (opcional) */
+.severity-badge.leve::before,
+.severity-badge.low::before {
+    content: "✓";
+    margin-right: 3px;
+}
+
+.severity-badge.moderado::before,
+.severity-badge.medium::before {
+    content: "!";
+    margin-right: 3px;
+}
+
+.severity-badge.grave::before,
+.severity-badge.high::before {
+    content: "⚠";
+    margin-right: 3px;
+}
+
+/* Buttons - Improved */
+.allergy-card-footer {
+    padding: 18px 24px;
+    background: #f8fafc;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.edit-btn, .delete-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.edit-btn {
+    background: linear-gradient(135deg, #3a7d94 0%, #1e4f61 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 2px 6px rgba(30, 79, 97, 0.15);
+}
+
+.edit-btn:hover {
+    background: linear-gradient(135deg, #2c6a7d 0%, #153946 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(30, 79, 97, 0.2);
+}
+
+.delete-btn {
+    background-color: white;
+    color: #dc2626;
+    border: 1px solid #fee2e2;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.delete-btn:hover {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+    transform: translateY(-2px);
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.modal-header h2 {
+    color: #1e4f61;
+    font-size: 1.5rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #64748b;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: #1e4f61;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #475569;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-family: "Poppins", sans-serif;
+    background-color: #f8fafc;
+    transition: border 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #1e4f61;
+    box-shadow: 0 0 0 2px rgba(30, 79, 97, 0.1);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.btn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #3a7d94 0%, #1e4f61 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 2px 6px rgba(30, 79, 97, 0.15);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #2c6a7d 0%, #153946 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(30, 79, 97, 0.2);
+}
+
+.btn-secondary {
+    background: white;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.btn-secondary:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        padding: 30px 20px;
+    }
+    
+    .allergy-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .allergy-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .allergy-pet {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .allergy-card-footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .edit-btn, .delete-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

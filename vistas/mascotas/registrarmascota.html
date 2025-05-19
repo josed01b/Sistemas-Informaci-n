@@ -143,8 +143,41 @@
             <label for="fecha_ultima_vacuna">Fecha de última vacuna:</label>
             <input type="date" id="fecha_ultima_vacuna" name="fecha_ultima_vacuna">
             
-            <label for="alergias">Alergias (si aplica):</label>
-            <textarea id="alergias" name="alergias" rows="2" placeholder="Indique alergias conocidas"></textarea>
+            <div class="allergies-management">
+                <label>Gestión de Alergias:</label>
+                <div id="allergiesContainer"></div>
+                <input type="hidden" id="alergias_json" name="alergias_json">
+                <button type="button" id="addAllergyBtn" class="btn-add">
+                    <i class="material-icons"></i> Añadir Alergia
+                </button>
+            </div>
+
+            <!-- Modal oculto para añadir/editar alergias -->
+            <div id="allergyModal" class="modal" style="display:none;">
+                <div class="modal-content">
+                    <h3 id="modalTitle">Añadir/Editar Alergia</h3>
+                    <label for="allergyName">Nombre:</label>
+                    <input type="text" id="allergyName" required>
+        
+                    <label for="allergySeverity">Gravedad:</label>
+                    <select id="allergySeverity" required>
+                        <option value="leve">Leve</option>
+                        <option value="moderada">Moderada</option>
+                        <option value="grave">Grave</option>
+                    </select>
+        
+                    <label for="allergySymptoms">Síntomas:</label>
+                    <textarea id="allergySymptoms" rows="2"></textarea>
+        
+                    <label for="allergyRecom">Recomendaciones:</label>
+                    <textarea id="allergyRecom" rows="2"></textarea>
+        
+                    <div class="modal-actions">
+                        <button type="button" id="cancelAllergyBtn">Cancelar</button>
+                        <button type="button" id="saveAllergyBtn">Guardar</button>
+                    </div>
+                </div>
+            </div>
             
             <label for="historial">Historial Médico:</label>
             <textarea id="historial" name="historial" rows="4" placeholder="Enfermedades previas, cirugías, tratamientos especiales"></textarea>

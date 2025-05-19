@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Alergias</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styleAlergia.css">
+    <link rel="stylesheet" href="/static/css/sidebar.css">
+</head>
+<body>
+    <aside id="sidebar-container"></aside>
+    <div class="content-container">
+        <main class="main-content">
+            <header class="main-header">
+                <h1><i class="material-icons">warning</i> Alergias Registradas</h1>
+                <button id="addAllergyBtn" class="add-btn">
+                    <i class="material-icons">add</i> Nueva Alergia
+                </button>
+            </header>     
+        
+            <div id="allergiesContainer">
+                <!-- Las alergias se cargarán aquí dinámicamente -->
+                <div class="empty-state">
+                    <i class="material-icons" style="font-size: 48px; color: #9E9E9E;">info</i>
+                    <p>No se han registrado alergias para tus mascotas</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Modal para añadir/editar alergias -->
+    <div id="allergyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Añadir Nueva Alergia</h2>
+                <button class="modal-close" id="closeModalBtn">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="petSelect">Mascota:</label>
+                    <select id="petSelect" class="form-control" required>
+                        <option value="">Selecciona una mascota</option>
+                        <!-- Se llenará dinámicamente -->
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="allergyName">Nombre de la alergia:</label>
+                    <input type="text" id="allergyName" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="allergySeverity">Gravedad:</label>
+                    <select id="allergySeverity" class="form-control" required>
+                        <option value="leve">Leve</option>
+                        <option value="moderada">Moderada</option>
+                        <option value="grave">Grave</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="detectionDate">Fecha de detección:</label>
+                    <input type="date" id="detectionDate" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="allergySymptoms">Síntomas observados:</label>
+                    <textarea id="allergySymptoms" class="form-control" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="allergyReaction">Reacciones específicas:</label>
+                    <textarea id="allergyReaction" class="form-control" rows="2"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="allergyRecommendations">Recomendaciones específicas:</label>
+                    <textarea id="allergyRecommendations" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button id="cancelAllergyBtn" class="btn btn-secondary">Cancelar</button>
+                <button id="saveAllergyBtn" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/static/js/firebase-config.js" defer></script>
+    <script type="module" src="/static/js/sidebar.js" defer></script>
+    <script type="module" src="/static/js/alergia.js" defer></script>
+</body>
+</html>

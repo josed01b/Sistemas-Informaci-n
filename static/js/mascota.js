@@ -114,6 +114,48 @@ function setupDetallesButtons() {
     });
 }
 
+function formatAllergiesForDisplay(allergiesData) {
+    if (!allergiesData) return "Ninguna registrada";
+    
+    try {
+        const allergies = typeof allergiesData === 'string' ? JSON.parse(allergiesData) : allergiesData;
+        
+        if (allergies.length === 0) return "Ninguna registrada";
+        
+        // Mostrar solo los nombres de las alergias en la vista resumida
+        return allergies.map(a => a.name).join(', ');
+    } catch (e) {
+      console.log(e);
+      // Si no es JSON válido, mostrar el texto directamente (para compatibilidad con versiones anteriores)
+      return allergiesData.length > 50 ? allergiesData.substring(0, 50) + '...' : allergiesData;
+    }
+}
+
+function formatAllergiesDetails(allergiesData) {
+    if (!allergiesData) return "Ninguna registrada";
+    
+    try {
+        const allergies = typeof allergiesData === 'string' ? JSON.parse(allergiesData) : allergiesData;
+        
+        if (allergies.length === 0) return "Ninguna registrada";
+        
+        return `
+            <ul class="allergies-detail-list">
+                ${allergies.map(a => `
+                    <li>
+                        <strong>${a.name}</strong> (${a.severity})
+                        <div><small><strong>Síntomas:</strong> ${a.symptoms}</small></div>
+                        ${a.recommendations ? `<div><small><strong>Recomendaciones:</strong> ${a.recommendations}</small></div>` : ''}
+                    </li>
+                `).join('')}
+            </ul>
+        `;
+    } catch (e) {
+      console.log(e);
+      return allergiesData; // Mostrar el texto directamente si no es JSON
+    }
+}
+
 // Función para calcular la próxima consulta
 function calcularProximaConsulta(ultimaConsulta) {
   if (!ultimaConsulta) return "";
@@ -184,6 +226,10 @@ function mostrarMascotasEnCards(mascotas) {
               <strong>Vacunas:</strong>
               <span>${vacunasTexto}</span>
             </div>
+            <div class="dato-mascota">
+              <strong>Alergias:</strong>
+              <span>${formatAllergiesForDisplay(mascota.alergias)}</span>
+            </div>
             
             <button class="btn-ver-mas">Ver más detalles ↓</button>
             
@@ -203,8 +249,8 @@ function mostrarMascotasEnCards(mascotas) {
                       }</span>
                   </div>
                   <div class="dato-mascota">
-                      <strong>Alergias:</strong>
-                      <span>${mascota.alergias || "Ninguna"}</span>
+                    <strong>Alergias:</strong>
+                    <div class="allergies-detail">${formatAllergiesDetails(mascota.alergias)}</div>
                   </div>
                   <div class="dato-mascota">
                       <strong>Última consulta:</strong>
@@ -310,8 +356,9 @@ async function obtenerMascotaPorId(id) {
 
 async function guardarCambiosMascota(idMascota, userId) {
   try {
-    // Obtener los checkboxes de vacunas seleccionados
-    const vacunasSeleccionadas = getVaccineData();
+
+    const alergiasJsonElement = document.getElementById('alergias_json');
+    const alergiasJson = alergiasJsonElement ? alergiasJsonElement.value : '[]';
     
     const mascotaData = {
       nombre: document.getElementById("nombre").value,
@@ -324,7 +371,7 @@ async function guardarCambiosMascota(idMascota, userId) {
       comportamiento: document.getElementById("comportamiento").value,
       medicamentos: document.getElementById("medicamentos").value,
       vacunas: vacunasSeleccionadas,
-      alergias: document.getElementById("alergias").value,
+      alergias: alergiasJson,
       historial: document.getElementById("historial").value,
       ultimaConsulta: document.getElementById("ultima_consulta").value,
       seguro: document.querySelector('input[name="seguro"]:checked').value,
@@ -355,6 +402,10 @@ async function manejarEdicionMascota() {
   if (!window.location.pathname.includes('/vistas/mascotas/modificarmascota.html')) return;
 
   console.log("Iniciando manejo de edición...");
+
+  if (document.getElementById('alergias_json')) {
+    document.getElementById('alergias_json').value = mascota.alergias || '[]';
+  }
   
   const urlParams = new URLSearchParams(window.location.search);
   const idMascota = urlParams.get('id');
@@ -406,6 +457,29 @@ async function manejarEdicionMascota() {
       }
     });
 
+    if (mascota.alergias) {
+    try {
+        const alergiasData = typeof mascota.alergias === 'string' 
+            ? JSON.parse(mascota.alergias) 
+            : mascota.alergias;
+        
+        document.getElementById('alergias_json').value = JSON.stringify(alergiasData);
+        
+        // Si existe el textarea antiguo, ocultarlo
+        if (document.getElementById('alergias')) {
+            document.getElementById('alergias').style.display = 'none';
+        }
+    } catch (e) {
+        console.error('Error parsing allergies:', e);
+        // Si hay error, mantener el sistema antiguo
+        if (document.getElementById('alergias') && mascota.alergias) {
+            document.getElementById('alergias').value = typeof mascota.alergias === 'string' 
+                ? mascota.alergias 
+                : 'Ver detalles en alergias específicas';
+        }
+    }
+}
+
     // Llenar seguro
     const seguroValue = mascota.seguro || 'no';
     const seguroElement = document.querySelector(`input[name="seguro"][value="${seguroValue}"]`);
@@ -435,6 +509,8 @@ async function manejarEdicionMascota() {
         if (details) details.style.display = 'block';
       }
     });
+
+    
 
     // Configurar submit del formulario
     const form = document.getElementById('form-mascota');
@@ -485,6 +561,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   onAuthStateChanged(auth, async (user) => {
     setupVaccineInteraction();
+    setupAllergiesSystem();
 
     if (!user) {
       window.location.href = "/vistas/login.html";
@@ -524,7 +601,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             vacunas: getVaccineData(), // Cambiamos a array de vacunas
             fechaUltimaVacuna:
               document.getElementById("fecha_ultima_vacuna").value || null,
-            alergias: document.getElementById("alergias").value,
+            alergias: document.getElementById('alergias_json').value,
             historial: document.getElementById("historial").value,
             ultimaConsulta: document.getElementById("ultima_consulta").value,
             seguro:
@@ -571,3 +648,260 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   });
 });
+
+// Sistema de gestión de alergias
+function setupAllergiesSystem() {
+    // 1. Obtener elementos con verificación
+    const getElement = (id) => {
+        const el = document.getElementById(id);
+        if (!el) console.error(`Elemento no encontrado: ${id}`);
+        return el;
+    };
+
+    const elements = {
+        container: getElement('allergiesContainer'),
+        addBtn: getElement('addAllergyBtn'),
+        modal: getElement('allergyModal'),
+        saveBtn: getElement('saveAllergyBtn'),
+        cancelBtn: getElement('cancelAllergyBtn'),
+        title: getElement('modalTitle'), // Asegúrate que este ID existe en tu HTML
+        nameInput: getElement('allergyName'),
+        severitySelect: getElement('allergySeverity'),
+        symptomsInput: getElement('allergySymptoms'),
+        recomInput: getElement('allergyRecom')
+    };
+
+    // 2. Verificar que los elementos esenciales existen
+    if (!elements.container || !elements.addBtn || !elements.modal || 
+        !elements.saveBtn || !elements.cancelBtn || !elements.title) {
+        console.error('Elementos esenciales del modal no encontrados');
+        return;
+    }
+
+        // Variables de estado
+        let allergies = [];
+        let currentEditIndex = -1;
+
+    // Función para añadir alergia (corregida)
+    elements.addBtn.addEventListener('click', () => {
+        if (!elements.title) {
+            console.error('Elemento modalTitle no encontrado');
+            return;
+        }
+
+        currentEditIndex = -1;
+        elements.title.textContent = 'Añadir Alergia';
+        elements.nameInput.value = '';
+        elements.severitySelect.value = 'leve';
+        elements.symptomsInput.value = '';
+        elements.recomInput.value = '';
+        elements.modal.style.display = 'flex';
+    });
+
+   
+    elements.saveBtn.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevenir el comportamiento por defecto
+        
+        // Validar manualmente
+        if (!elements.nameInput.value || !elements.severitySelect.value) {
+            alert('Por favor complete todos los campos requeridos');
+        }});
+
+        // 4. Inicializar datos
+        const initAllergies = () => {
+            const jsonInput = document.getElementById('alergias_json');
+            if (jsonInput && jsonInput.value) {
+                try {
+                    allergies = JSON.parse(jsonInput.value);
+                } catch (e) {
+                    console.error('Error parsing allergies:', e);
+                    allergies = [];
+                }
+            } 
+        };
+
+        // 5. Renderizar alergias
+        const renderAllergies = () => {
+            // Limpiar contenedor de forma segura
+            elements.container.innerHTML = '';
+            
+            if (allergies.length === 0) {
+                elements.container.innerHTML = `
+                    <div class="allergy-item indeterminada">
+                        <div class="allergy-header">
+                            <span class="allergy-name">Alergias desconocidas</span>
+                            <span class="severity-badge">Indeterminada</span>
+                        </div>
+                        <div class="allergy-details">
+                            <p><strong>Síntomas:</strong> No se han identificado alergias aún</p>
+                            <p><strong>Recomendaciones:</strong> Monitorizar posibles reacciones</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+            
+            allergies.forEach((allergy, index) => {
+                const allergyElement = document.createElement('div');
+                allergyElement.className = `allergy-item ${allergy.severity}`;
+                allergyElement.innerHTML = `
+                    <div class="allergy-header">
+                        <span class="allergy-name">${allergy.name}</span>
+                        <span class="severity-badge">${allergy.severity}</span>
+                        <div class="allergy-actions">
+                            <button class="edit-btn" data-index="${index}">✏️</button>
+                            <button class="delete-btn" data-index="${index}">🗑️</button>
+                        </div>
+                    </div>
+                    <div class="allergy-details">
+                        <p><strong>Síntomas:</strong> ${allergy.symptoms}</p>
+                        <p><strong>Recomendaciones:</strong> ${allergy.recommendations}</p>
+                    </div>
+                `;
+                elements.container.appendChild(allergyElement);
+            });
+            
+            // Añadir event listeners
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentEditIndex = parseInt(btn.dataset.index);
+                    openEditModal(allergies[currentEditIndex]);
+                });
+            });
+            
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const index = parseInt(btn.dataset.index);
+                    if (confirm('¿Eliminar esta alergia?')) {
+                        allergies.splice(index, 1);
+                        renderAllergies();
+                        updateHiddenInput();
+                    }
+                });
+            });
+        };
+
+        // 6. Funciones auxiliares
+        const openEditModal = (allergy) => {
+        if (!elements.title || !elements.nameInput || !elements.severitySelect) {
+            console.error('Elementos del modal no disponibles');
+            return;
+        }
+
+        elements.title.textContent = 'Editar Alergia';
+        elements.nameInput.value = allergy.name || '';
+        elements.severitySelect.value = allergy.severity || 'leve';
+        elements.symptomsInput.value = allergy.symptoms || '';
+        elements.recomInput.value = allergy.recommendations || '';
+        elements.modal.style.display = 'flex';
+    };
+
+        const updateHiddenInput = () => {
+            const input = document.getElementById('alergias_json');
+            if (input) {
+                input.value = JSON.stringify(allergies);
+            }
+        };
+
+        // 7. Inicialización
+        initAllergies();
+        renderAllergies();
+
+        // 8. Event listeners
+        elements.addBtn.addEventListener('click', () => {
+            currentEditIndex = -1;
+            elements.nameInput.value = '';
+            elements.severitySelect.value = 'leve';
+            elements.symptomsInput.value = '';
+            elements.recomInput.value = '';
+            elements.title.textContent = 'Añadir Alergia';
+            elements.modal.style.display = 'flex';
+        });
+
+        elements.saveBtn.addEventListener('click', () => {
+            const allergy = {
+                name: elements.nameInput.value,
+                severity: elements.severitySelect.value,
+                symptoms: elements.symptomsInput.value,
+                recommendations: elements.recomInput.value,
+                date: new Date().toLocaleDateString()
+            };
+            
+            if (currentEditIndex >= 0) {
+                allergies[currentEditIndex] = allergy;
+            } else {
+                // Eliminar placeholder si existe
+                allergies = allergies.filter(a => !a.isPlaceholder);
+                allergies.push(allergy);
+            }
+            
+            renderAllergies();
+            elements.modal.style.display = 'none';
+            updateHiddenInput();
+        });
+
+        elements.cancelBtn.addEventListener('click', () => {
+            elements.modal.style.display = 'none';
+        });
+
+        // Cerrar modal al hacer clic fuera
+        window.addEventListener('click', (event) => {
+            if (event.target === elements.modal) {
+                elements.modal.style.display = 'none';
+            }
+        });
+
+        // Manejar checkbox de alergia desconocida si existe
+        if (elements.unknownCheckbox) {
+            elements.unknownCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    elements.formFields.style.display = 'none';
+                    elements.nameInput.value = 'Alergias desconocidas';
+                    elements.severitySelect.value = 'indeterminada';
+                    elements.symptomsInput.value = 'No se han identificado alergias aún';
+                    elements.recomInput.value = 'Monitorizar posibles reacciones';
+                } else {
+                    elements.formFields.style.display = 'block';
+                }
+            });
+        }
+}
+  
+    // Actualizar campo oculto para el formulario
+    function updateHiddenInput() {
+        const input = document.getElementById('alergias_json');
+        input.value = JSON.stringify(allergies);
+    }
+    
+    // Funciones auxiliares para el modal
+    function resetModal() {
+        document.getElementById('allergyName').value = '';
+        document.getElementById('allergySeverity').value = 'leve';
+        document.getElementById('allergySymptoms').value = '';
+        document.getElementById('allergyRecom').value = '';
+        unknownAllergyCheckbox.checked = false;
+        allergyFormFields.classList.remove('hidden');
+    }
+    
+    function fillModal(allergy) {
+        document.getElementById('allergyName').value = allergy.name;
+        document.getElementById('allergySeverity').value = allergy.severity;
+        document.getElementById('allergySymptoms').value = allergy.symptoms;
+        document.getElementById('allergyRecom').value = allergy.recommendations;
+        unknownAllergyCheckbox.checked = allergy.severity === 'indeterminada' && allergy.name.toLowerCase().includes('desconocid');
+        if (unknownAllergyCheckbox.checked) {
+            allergyFormFields.classList.add('hidden');
+        }
+    }
+    
+    // Cerrar modal
+    cancelAllergyBtn.addEventListener('click', function() {
+        allergyModal.style.display = 'none';
+    });
+    
+    // Cerrar al hacer clic fuera del modal
+    window.addEventListener('click', function(event) {
+        if (event.target === allergyModal) {
+            allergyModal.style.display = 'none';
+        }
+    });

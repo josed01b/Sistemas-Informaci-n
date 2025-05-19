@@ -334,6 +334,86 @@ input[type="submit"]:hover{
     }
 }
 
+/* Estilos para el sistema de alergias */
+.allergies-management {
+    margin: 15px 0;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
 
+.allergy-item {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.allergy-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.allergy-name {
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.severity-badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+.allergy-item.indeterminada .severity-badge {
+    background: #EEEEEE;
+    color: #616161;
+}
+
+.allergy-details {
+    margin-top: 10px;
+}
+
+.allergy-details p {
+    margin: 5px 0;
+    font-size: 0.95em;
+}
+
+.allergy-details strong {
+    color: #555;
+}
+
+.btn-add {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.allergy-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.allergy-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    font-size: 16px;
+    padding: 5px;
+}
 
 

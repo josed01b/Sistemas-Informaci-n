@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 .home_content {
-  margin-left: 350px; /* Asegúrate que este valor coincida con el ancho real del sidebar */
+  margin-left: 350px;
   padding: 40px 30px;
   min-height: 100vh;
+  background-color: #f5f7fa;
 }
 
-
-/* ESTILOS PARA LAS CARDS DE MASCOTAS */
+/* ESTILOS PARA LAS CARDS DE MASCOTAS - VERSIÓN MEJORADA */
 .contenedor-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -16,140 +16,164 @@
 }
 
 .card-mascota {
-  width: 100%; /* Ocupa todo el espacio disponible en su celda grid */
-  max-width: 380px; /* Máximo ancho para no estirarse demasiado */
-  background: linear-gradient(135deg, #faf0dc 0%, #ffffff 100%);
-  border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(30, 79, 97, 0.15);
+  width: 100%;
+  max-width: 380px;
+  background: linear-gradient(135deg, #faf9f5 0%, #ffffff 100%);
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(30, 79, 97, 0.12);
   overflow: hidden;
   transition: all 0.3s ease;
-  border: 1px solid #adb1a7;
-  margin: 0 auto; /* Centra la card en su celda grid */
+  border: 1px solid #e1e5eb;
+  margin: 0 auto;
 }
 
 .card-mascota:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 20px rgba(30, 79, 97, 0.2);
+  box-shadow: 0 10px 20px rgba(30, 79, 97, 0.18);
 }
 
 .card-header {
-  background-color: #1e4f61;
+  background: linear-gradient(135deg, #2c6a7d 0%, #1e4f61 100%);
   color: white;
-  padding: 15px;
+  padding: 16px;
   position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .card-header h3 {
   margin: 0;
   font-size: 1.5rem;
   font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.5px;
 }
 
 .especie-icon {
   position: absolute;
-  right: 15px;
-  top: 15px;
-  font-size: 1.8rem;
+  right: 16px;
+  top: 16px;
+  font-size: 1.7rem;
+  opacity: 0.9;
 }
 
 .card-body {
-  padding: 20px; /* Aumentado de 15px */
+  padding: 20px;
 }
 
 .dato-mascota {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   display: flex;
   align-items: flex-start;
+  font-family: 'Nunito', sans-serif;
 }
 
 .dato-mascota strong {
-  color: #1e4f61;
-  min-width: 140px; /* Aumentado de 120px */
+  color: #2c6a7d;
+  min-width: 140px;
   display: inline-block;
   font-weight: 600;
+  font-size: 0.95rem;
 }
 
 .dato-mascota span {
   flex: 1;
-  color: #333;
+  color: #4a5568;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .card-footer {
   display: flex;
-  justify-content: flex-end; /* Alinea botones a la derecha */
-  gap: 15px; /* Espacio entre botones */
-  padding: 15px 20px; /* Más padding horizontal */
-  background-color: rgba(173, 177, 167, 0.1);
-  border-top: 1px solid #adb1a7;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 14px 20px;
+  background-color: rgba(233, 236, 239, 0.4);
+  border-top: 1px solid #e1e5eb;
 }
 
 .btn-mascota {
-  padding: 8px 15px;
+  padding: 8px 16px;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
+  font-size: 0.9rem;
+  font-family: 'Nunito', sans-serif;
 }
 
 .btn-editar {
-  background-color: #1e4f61;
+  background: linear-gradient(135deg, #3a7d94 0%, #1e4f61 100%);
   color: white;
+  box-shadow: 0 2px 4px rgba(30, 79, 97, 0.1);
 }
 
 .btn-editar:hover {
-  background-color: #153946;
+  background: linear-gradient(135deg, #2c6a7d 0%, #153946 100%);
+  box-shadow: 0 4px 8px rgba(30, 79, 97, 0.2);
 }
 
 .btn-eliminar {
-  background-color: #faf0dc;
-  color: #1e4f61;
-  border: 1px solid #1e4f61;
+  background-color: #fff9f0;
+  color: #c44536;
+  border: 1px solid #f0d6c8;
+  box-shadow: 0 2px 4px rgba(196, 69, 54, 0.05);
 }
 
 .btn-eliminar:hover {
-  background-color: #e8d9c1;
+  background-color: #fef2e6;
+  border-color: #e8c4b4;
 }
 
 .detalles-adicionales {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease;
-  padding: 0 15px; /* Añade padding para que el contenido no toque los bordes */
+  transition: max-height 0.4s ease;
+  padding: 0 15px;
 }
 
 .detalles-adicionales.active {
-  max-height: 1000px; /* Ajusta según el contenido máximo */
-  padding: 15px; /* Mismo padding que el card-body */
+  max-height: 1000px;
+  padding: 15px;
   margin-top: 10px;
-  border-top: 1px solid rgba(0,0,0,0.1);
+  border-top: 1px solid rgba(30, 79, 97, 0.1);
+  background-color: rgba(250, 240, 220, 0.2);
 }
 
 .btn-ver-mas {
   background: none;
   border: none;
-  color: #1e4f61;
-  text-decoration: underline;
+  color: #2c6a7d;
+  text-decoration: none;
   cursor: pointer;
   font-size: 0.9rem;
   margin-top: 10px;
   display: inline-block;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  padding: 5px 0;
+  transition: all 0.2s;
+}
+
+.btn-ver-mas:hover {
+  color: #1e4f61;
+  text-decoration: underline;
 }
 
 /* Iconos para especies */
 .fa-dog {
-  color: #8b5a2b;
+  color: #b38b6d;
 }
 
 .fa-cat {
-  color: #d2691e;
+  color: #d49a6a;
 }
 
 /* Estilos para el botón "Nueva Mascota" */
 .btn-nueva-mascota {
-  background-color: #1e4f61;
+  background: linear-gradient(135deg, #3a7d94 0%, #1e4f61 100%);
   color: white;
-  padding: 12px 25px;
+  padding: 12px 24px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
@@ -157,14 +181,15 @@
   align-items: center;
   gap: 8px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(30, 79, 97, 0.2);
-  border: 2px solid #1e4f61;
+  box-shadow: 0 4px 8px rgba(30, 79, 97, 0.15);
+  border: none;
+  font-family: 'Poppins', sans-serif;
 }
 
 .btn-nueva-mascota:hover {
-  background-color: #153946;
+  background: linear-gradient(135deg, #2c6a7d 0%, #153946 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(30, 79, 97, 0.3);
+  box-shadow: 0 6px 12px rgba(30, 79, 97, 0.2);
 }
 
 .btn-nueva-mascota:active {
@@ -178,7 +203,12 @@
 /* Responsive */
 @media (max-width: 768px) {
   .contenedor-cards {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
+  }
+  
+  .home_content {
+    margin-left: 0;
+    padding: 20px 15px;
   }
 }
 
@@ -188,7 +218,10 @@
 }
 
 .header-mascotas h1 {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   color: #1e4f61;
   margin-bottom: 15px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(30, 79, 97, 0.1);
 }

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendaciones para Mascotas</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styleSidebar.css">
+    <link rel="stylesheet" href="/static/css/styleRecomendacion.css">
+</head>
+<body>
+
+
+    <aside id="sidebar-container"></aside>
+    <div class="recommendations-container">
+        <h1 class="main-title">
+            <i class="material-icons">pets</i>
+            Recomendaciones para tu Mascota
+        </h1>
+        
+        <div class="recommendations-grid">
+            <!-- Sección de Alergias -->
+            <div class="recommendation-card">
+                <div class="card-header allergy-header">
+                    <h2>
+                        <i class="material-icons">warning</i>
+                        Basado en alergias
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div id="allergy-recommendations" class="recommendations-list">
+                        <div class="loading-recommendation">
+                            <i class="material-icons spin">autorenew</i>
+                            Analizando alergias registradas...
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sección de Comportamiento -->
+            <div class="recommendation-card">
+                <div class="card-header behavior-header">
+                    <h2>
+                        <i class="material-icons">psychology</i>
+                        Para problemas de comportamiento
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div id="behavior-recommendations" class="recommendations-list">
+                        <div class="loading-recommendation">
+                            <i class="material-icons spin">autorenew</i>
+                            Preparando recomendaciones...
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sección de Cuidados Médicos -->
+            <div class="recommendation-card">
+                <div class="card-header medical-header">
+                    <h2>
+                        <i class="material-icons">medical_services</i>
+                        Cuidados especiales
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div id="medical-recommendations" class="recommendations-list">
+                        <div class="loading-recommendation">
+                            <i class="material-icons spin">autorenew</i>
+                            Revisando historial médico...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="help-section">
+            <h3>¿Cómo mejorar las recomendaciones?</h3>
+            <ul>
+                <li>Describe las alergias con detalles: "Alergia al pollo - vómitos y picazón en orejas"</li>
+                <li>Menciona comportamientos específicos: "Ladra mucho cuando queda solo"</li>
+                <li>Incluye todo el historial médico relevante</li>
+            </ul>
+            <button id="refresh-btn" class="refresh-button">
+                <i class="material-icons">refresh</i>
+                Volver a analizar
+            </button>
+        </div>
+    </div>
+
+    <script type="module" src="/static/js/sidebar.js" defer></script>
+    <script src="/static/js/recomendacion.js"></script>
+</body>
+</html>
